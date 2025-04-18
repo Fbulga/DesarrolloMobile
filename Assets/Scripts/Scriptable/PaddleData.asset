@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   collisionRadius: 1.68
-  movementSensitivity: 1.5
+  movementSensitivity: 0.75
   rayDistance: 0.7
   limitLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64

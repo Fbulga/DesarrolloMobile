@@ -110,4 +110,6 @@ public class GameManager : MonoBehaviour
     {
         deadZone.RunDeadlyTimer(duration);
     }
+
+
 }

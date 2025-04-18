@@ -17,7 +17,7 @@ public class PowerUp : MonoBehaviour
         circleCollider2D = GetComponent<CircleCollider2D>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         transform.position += (Vector3)(new Vector2(0f,-1f) * (speed * Time.deltaTime));
         Physics2D.OverlapCircleNonAlloc(transform.position,detectionRadius,colliders);

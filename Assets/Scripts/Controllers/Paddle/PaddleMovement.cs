@@ -18,7 +18,7 @@ public class PaddleMovement : MonoBehaviour
         leftMovement = -1f;
         rightMovement = 1f;
     }
-    private void FixedUpdate()
+    private void Update()
     {
         Movement();
     }

@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clip: {fileID: 0}
   powerUps:
-  - {fileID: 0}
+  - {fileID: 1772295241752277830, guid: 8cb72b7a589ee7642890551458ae1ede, type: 3}
+  - {fileID: 1749258037446137727, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}

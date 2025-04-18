@@ -22,8 +22,6 @@ public class Brick : MonoBehaviour, IBreakable
         if (destroyed) return;
         TryDropPowerUp();
         destroyed = true;
-        // TODO
-        //AudioManager.Instance.PlaySound(data.Clip);
         GameManager.Instance.DestroyBrick(brickPoints);
         Destroy(gameObject);
     }

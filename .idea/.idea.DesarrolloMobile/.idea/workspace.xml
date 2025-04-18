@@ -17,7 +17,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Assets/Scripts/CollisionCheck.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scriptable/Power Up/Invincibility.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -100,7 +100,8 @@
       <workItem from="1744204075093" duration="1540000" />
       <workItem from="1744667321031" duration="1489000" />
       <workItem from="1744669250156" duration="9160000" />
-      <workItem from="1744896022606" duration="1051000" />
+      <workItem from="1744896022606" duration="35614000" />
+      <workItem from="1744984295280" duration="2839000" />
     </task>
     <servers />
   </component>

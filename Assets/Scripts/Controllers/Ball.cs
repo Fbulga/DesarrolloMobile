@@ -13,19 +13,17 @@ public class Ball : MonoBehaviour
     private CircleCollider2D circleCollider2D;
     private Vector2 direction;
 
-    private void Awake()
-    {
-        GameManager.Instance.NewBallInGame();
-    }
+
 
     private void Start()
     {
+        GameManager.Instance.NewBallInGame();
         circleCollider2D = GetComponent<CircleCollider2D>();
         circleCollider2D.radius = ballData.CollisionRadius;
         direction = new Vector2(Random.Range(-1f,1f), -1f);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         transform.position += (Vector3)(direction * (ballData.Speed * Time.deltaTime));
         Physics2D.OverlapCircleNonAlloc(transform.position,ballData.CollisionRadius,colliders,ballData.ObstacleLayer);

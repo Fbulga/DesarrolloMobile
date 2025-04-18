@@ -7,11 +7,14 @@ public class PaddleEffect : MonoBehaviour
 {
     private Vector3 originalScale;
 
+    [SerializeField] private GameObject ballPrefab;
+    [SerializeField] private Transform ballSpawnPoint;
     private void Start()
     {
         originalScale = transform.localScale;
     }
 
+    //LongPaddle
     public void LongPaddle(float scaleMultiplier, float duration)
     {
         StopAllCoroutines();
@@ -23,6 +26,11 @@ public class PaddleEffect : MonoBehaviour
         yield return new WaitForSeconds(duration);
         transform.localScale = originalScale;
     }
-    
+
+
+    public void NewBall()
+    {
+        Instantiate(ballPrefab, ballSpawnPoint.position, Quaternion.identity);
+    }
 
 }
