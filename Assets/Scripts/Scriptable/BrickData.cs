@@ -8,4 +8,8 @@ public class BrickData : ScriptableObject
     
     [SerializeField] private GameObject[] powerUps;
     public GameObject[] PowerUps => powerUps;
+
+    [SerializeField]
+    [Range(0f,1f)]private float dropChance;
+    public float DropChance => dropChance;
 }

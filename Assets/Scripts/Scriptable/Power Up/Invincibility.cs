@@ -3,6 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Invincibility", menuName = "PowerUp/Invincibility", order = 0)]
 public class Invincibility : EffectSO
 {
+    
+    [SerializeField] private float powerUpSpeed; 
+    protected override float speed => powerUpSpeed;
+    
     [SerializeField]private float duration;
     
     public override void Execute(GameObject gameObject)

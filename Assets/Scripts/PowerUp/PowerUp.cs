@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float detectionRadius;
+    private float speed;
+    private float detectionRadius;
     
     [SerializeField] private EffectSO powerUpEffect;
     [SerializeField] private Collider2D[] colliders = new Collider2D[2];
@@ -15,6 +15,8 @@ public class PowerUp : MonoBehaviour
     private void Start()
     {
         circleCollider2D = GetComponent<CircleCollider2D>();
+        speed = powerUpEffect.Speed;
+        detectionRadius = powerUpEffect.DetectionRadius;
     }
 
     void Update()

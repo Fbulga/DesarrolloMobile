@@ -9,10 +9,17 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     
     [SerializeField] TextMeshProUGUI scoreText;
+    
     private int totalPoints = 0;
-    private int ballsInGame = 0;
     private int bricksInGame = 0;
     
+    private int ballsInGame = 0;
+    private List<GameObject> activeBalls = new List<GameObject>();
+    public List<GameObject> ActiveBalls => activeBalls;
+    [SerializeField] private int activeBallsLimit;
+    public int ActiveBallsLimit => activeBallsLimit;
+
+
     private DeadZone deadZone;
     
     
@@ -53,25 +60,34 @@ public class GameManager : MonoBehaviour
 
     
     //Ball
-    private void AddBallInGame()
+    private void AddBallInGame(GameObject ball)
     {
         ballsInGame++;
+        if (!activeBalls.Contains(ball))
+        {
+            activeBalls.Add(ball);
+        }
     }
-    private void SubtractBallInGame()
+    private void SubtractBallInGame(GameObject ball)
     {
         ballsInGame--;
+        if (activeBalls.Contains(ball))
+        {
+            activeBalls.Remove(ball);
+        }
+        
         if (ballsInGame <= 0)
         {
             Debug.Log("Game Over");
         }
     }
-    public void NewBallInGame()
+    public void NewBallInGame(GameObject ball)
     {
-        AddBallInGame();
+        AddBallInGame(ball);
     }
-    public void RemoveBall()
+    public void RemoveBall(GameObject ball)
     {
-        SubtractBallInGame();
+        SubtractBallInGame(ball);
     }
 
     
@@ -110,6 +126,8 @@ public class GameManager : MonoBehaviour
     {
         deadZone.RunDeadlyTimer(duration);
     }
+
+    
 
 
 }

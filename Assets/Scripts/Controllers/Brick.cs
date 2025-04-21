@@ -9,6 +9,7 @@ public class Brick : MonoBehaviour, IBreakable
     [SerializeField] private int health;
     [SerializeField] private BrickData data;
     [SerializeField] private int brickPoints;
+    private float dropChance;
     
     private bool destroyed = false;
 
@@ -23,7 +24,7 @@ public class Brick : MonoBehaviour, IBreakable
         TryDropPowerUp();
         destroyed = true;
         GameManager.Instance.DestroyBrick(brickPoints);
-        Destroy(gameObject);
+        Destroy(gameObject);            
     }
 
     public void TryDestroyMe()
@@ -34,10 +35,12 @@ public class Brick : MonoBehaviour, IBreakable
 
     public void TryDropPowerUp()
     {
-        if (data.PowerUps.Length > 0f)
+        dropChance = Random.value;
+        if (dropChance <= data.DropChance && data.PowerUps.Length > 0f)
         {
             Instantiate(data.PowerUps[Random.Range(0, data.PowerUps.Length)], transform.position, Quaternion.identity);
             Debug.Log("PowerUp Detected");
         }
+
     }
 }

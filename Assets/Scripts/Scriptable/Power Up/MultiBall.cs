@@ -3,17 +3,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MultiBall", menuName = "PowerUp/MultiBall", order = 0)]
 public class MultiBall : EffectSO
 {
-    private GameObject[] balls;
+    
+    [SerializeField] private float powerUpSpeed; 
+    protected override float speed => powerUpSpeed;
+    
+    
+    [SerializeField] GameObject ballPrefab;
     public override void Execute(GameObject gameObject)
     {
-        if (balls == null)
+        if (GameManager.Instance.ActiveBalls.Count <= GameManager.Instance.ActiveBallsLimit)
         {
-            balls = GameObject.FindGameObjectsWithTag("Ball");
-        }
-
-        foreach (GameObject ball in balls)
-        {
-            Instantiate(ball, gameObject.transform.position, Quaternion.identity);
+            foreach (GameObject ball in GameManager.Instance.ActiveBalls)
+            {
+                var newBall = Instantiate(ballPrefab, ball.transform.position, Quaternion.identity);
+                newBall.GetComponent<Ball>().SetDirection(ball.GetComponent<Ball>().Direction * new Vector2(-1f,1f));
+            }
         }
     }
 }

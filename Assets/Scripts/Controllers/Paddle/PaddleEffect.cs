@@ -6,8 +6,7 @@ using UnityEngine;
 public class PaddleEffect : MonoBehaviour
 {
     private Vector3 originalScale;
-
-    [SerializeField] private GameObject ballPrefab;
+    
     [SerializeField] private Transform ballSpawnPoint;
     private void Start()
     {
@@ -27,10 +26,6 @@ public class PaddleEffect : MonoBehaviour
         transform.localScale = originalScale;
     }
 
-
-    public void NewBall()
-    {
-        Instantiate(ballPrefab, ballSpawnPoint.position, Quaternion.identity);
-    }
+    
 
 }

@@ -11,13 +11,14 @@ public class Ball : MonoBehaviour
     
     private Collider2D[] colliders = new Collider2D[5];
     private CircleCollider2D circleCollider2D;
+    
     private Vector2 direction;
-
+    public Vector2 Direction => direction;
 
 
     private void Start()
     {
-        GameManager.Instance.NewBallInGame();
+        GameManager.Instance.NewBallInGame(this.gameObject);
         circleCollider2D = GetComponent<CircleCollider2D>();
         circleCollider2D.radius = ballData.CollisionRadius;
         direction = new Vector2(Random.Range(-1f,1f), -1f);
@@ -74,11 +75,16 @@ public class Ball : MonoBehaviour
 
     private void DeactivateBall()
     {
+        GameManager.Instance.RemoveBall(this.gameObject);
         Destroy(gameObject);
-        GameManager.Instance.RemoveBall();
     }
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position,ballData.CollisionRadius);
+    }
+
+    public void SetDirection(Vector2 direction)
+    {
+        this.direction = direction;
     }
 }
