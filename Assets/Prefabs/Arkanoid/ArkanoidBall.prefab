@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3318975169149001017}
   - component: {fileID: 9212702855680048538}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: ArkanoidBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

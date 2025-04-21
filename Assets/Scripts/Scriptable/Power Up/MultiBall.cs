@@ -11,12 +11,12 @@ public class MultiBall : EffectSO
     [SerializeField] GameObject ballPrefab;
     public override void Execute(GameObject gameObject)
     {
-        if (GameManager.Instance.ActiveBalls.Count <= GameManager.Instance.ActiveBallsLimit)
+        if (ArkanoidGameManager.Instance.ActiveBalls.Count <= ArkanoidGameManager.Instance.ActiveBallsLimit)
         {
-            foreach (GameObject ball in GameManager.Instance.ActiveBalls)
+            foreach (GameObject ball in ArkanoidGameManager.Instance.ActiveBalls)
             {
                 var newBall = Instantiate(ballPrefab, ball.transform.position, Quaternion.identity);
-                newBall.GetComponent<Ball>().SetDirection(ball.GetComponent<Ball>().Direction * new Vector2(-1f,1f));
+                newBall.GetComponent<ArkanoidBall>().SetDirection(ball.GetComponent<ArkanoidBall>().Direction * new Vector2(-1f,1f));
             }
         }
     }

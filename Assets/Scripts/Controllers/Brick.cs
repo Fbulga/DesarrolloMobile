@@ -15,7 +15,7 @@ public class Brick : MonoBehaviour, IBreakable
 
     private void Start()
     {
-        GameManager.Instance.NewBrickInGame();
+        ArkanoidGameManager.Instance.NewBrickInGame();
     }
 
     public void DestroyMe()
@@ -23,7 +23,7 @@ public class Brick : MonoBehaviour, IBreakable
         if (destroyed) return;
         TryDropPowerUp();
         destroyed = true;
-        GameManager.Instance.DestroyBrick(brickPoints);
+        ArkanoidGameManager.Instance.DestroyBrick(brickPoints);
         Destroy(gameObject);            
     }
 

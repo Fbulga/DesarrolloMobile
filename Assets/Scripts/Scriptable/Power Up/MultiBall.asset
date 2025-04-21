@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f311c8269a495e9ce37659105d9619, type: 3}
   m_Name: MultiBall
   m_EditorClassIdentifier: 
-  ballPrefab: {fileID: 0}
+  powerUpSpeed: 4
+  ballPrefab: {fileID: 6199170638837260914, guid: 256ce6d02516a444ead2e06744852ea3, type: 3}

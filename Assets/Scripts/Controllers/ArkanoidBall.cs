@@ -4,7 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-public class Ball : MonoBehaviour
+public class ArkanoidBall : MonoBehaviour
 {   
     [SerializeField] private CollisionCheck collisionCheck;
     [SerializeField] private BallData ballData;
@@ -18,7 +18,7 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.NewBallInGame(this.gameObject);
+        ArkanoidGameManager.Instance.NewBallInGame(this.gameObject);
         circleCollider2D = GetComponent<CircleCollider2D>();
         circleCollider2D.radius = ballData.CollisionRadius;
         direction = new Vector2(Random.Range(-1f,1f), -1f);
@@ -29,6 +29,7 @@ public class Ball : MonoBehaviour
         transform.position += (Vector3)(direction * (ballData.Speed * Time.deltaTime));
         Physics2D.OverlapCircleNonAlloc(transform.position,ballData.CollisionRadius,colliders,ballData.ObstacleLayer);
         CheckCollisions();
+        direction = direction.normalized;
     }
 
     private void CheckCollisions()
@@ -75,7 +76,7 @@ public class Ball : MonoBehaviour
 
     private void DeactivateBall()
     {
-        GameManager.Instance.RemoveBall(this.gameObject);
+        ArkanoidGameManager.Instance.RemoveBall(this.gameObject);
         Destroy(gameObject);
     }
     void OnDrawGizmos()

@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d2e27a613647ce4ca2912f324f371a0, type: 3}
-  m_Name: Invincibility
+  m_Script: {fileID: 11500000, guid: cb68e7106e4742e99c44c2aab7d550cb, type: 3}
+  m_Name: IAPaddleData
   m_EditorClassIdentifier: 
-  powerUpSpeed: 3
-  duration: 10
+  speed: 10
+  collisionRadius: 1.68
+  movementSensitivity: 0
+  rayDistance: 0.7
+  limitLayerMask:
+    serializedVersion: 2
+    m_Bits: 64

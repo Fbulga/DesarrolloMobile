@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1e5f1297ee423b8009c0f7bfc95dfe, type: 3}
   m_Name: BallData
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 2.5
   collisionRadius: 0.14
   obstacleLayer:
     serializedVersion: 2

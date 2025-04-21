@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fab9c9f6acd24d078db7d5a86cea7d2a, type: 3}
   m_Name: LongPaddle
   m_EditorClassIdentifier: 
-  scaleMultiplier: 1.2
+  powerUpSpeed: 2
+  scaleMultiplier: 1.6
   duration: 5

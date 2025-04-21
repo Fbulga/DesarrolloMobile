@@ -16,7 +16,7 @@ public class DeadZone : MonoBehaviour
     
     private void Start()
     {
-        GameManager.Instance.SetDeadZone(this);
+        ArkanoidGameManager.Instance.SetDeadZone(this);
         originalColor = gameObject.GetComponent<SpriteRenderer>().color;
     }
     public void RunDeadlyTimer(float duration)

@@ -1,19 +1,18 @@
-using System;
-using System.Collections;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class ArkanoidGameManager : MonoBehaviour, IManager
 {
-    public static GameManager Instance;
+    public static ArkanoidGameManager Instance;
     
-    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText;
     
     private int totalPoints = 0;
     private int bricksInGame = 0;
-    
     private int ballsInGame = 0;
+    
     private List<GameObject> activeBalls = new List<GameObject>();
     public List<GameObject> ActiveBalls => activeBalls;
     [SerializeField] private int activeBallsLimit;
@@ -34,7 +33,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
 
@@ -55,7 +54,14 @@ public class GameManager : MonoBehaviour
     }
     private void UpdateScoreText()
     {
-        scoreText.text = totalPoints.ToString();
+        if (scoreText != null)
+        {
+            scoreText.text = "Points: "+ totalPoints.ToString();
+        }
+        else
+        {
+            scoreText = GameObject.Find("PointsText").GetComponent<TextMeshProUGUI>();
+        }
     }
 
     
@@ -79,6 +85,7 @@ public class GameManager : MonoBehaviour
         if (ballsInGame <= 0)
         {
             Debug.Log("Game Over");
+            SceneManager.LoadScene("LossArkanoid");
         }
     }
     public void NewBallInGame(GameObject ball)
@@ -98,6 +105,7 @@ public class GameManager : MonoBehaviour
         if (bricksInGame == 0)
         {
             Debug.Log("Win");
+            SceneManager.LoadScene("WinArkanoid");
         }
     }
     private void AddBrickInGame()
@@ -127,7 +135,12 @@ public class GameManager : MonoBehaviour
         deadZone.RunDeadlyTimer(duration);
     }
 
-    
 
-
+    public void ResetManager()
+    {
+        totalPoints = 0;
+        bricksInGame = 0;
+        ballsInGame = 0;
+        activeBalls.Clear();
+    }
 }
