@@ -10,15 +10,16 @@ public class IAPaddleMovement : MonoBehaviour
     [SerializeField] private float reactionDistance;
     [SerializeField] public Transform ball;
     
+    
     private float leftMovement;
     private float rightMovement;
 
     private Vector2 ballDirection;
     
-    //public float distance;
-    //SerializeField] float treshold;
-    //[SerializeField] private float reactionCooldown;
-    //private float nextReactionTime;
+    public float distance;
+    [SerializeField] float treshold;
+    [SerializeField] private float reactionCooldown;
+    private float nextReactionTime;
     
     
     [SerializeField]public float aiDetection;
@@ -30,10 +31,11 @@ public class IAPaddleMovement : MonoBehaviour
         leftMovement = -1f;
         rightMovement = 1f;
     }
-    private void Update()
+    private void LateUpdate()
     {  
 
-        /*
+        CollisionRays();
+        
         ballDirection = ball.GetComponent<PongBall>().Direction;
         if (ballDirection.y > 0f)
         {
@@ -50,9 +52,9 @@ public class IAPaddleMovement : MonoBehaviour
                 }
             }
         }
-        */
         
         
+        /*
         ballDirection = ball.GetComponent<PongBall>().transform.position;
         
         if (Mathf.Abs(ballDirection.x - transform.position.x) > aiDetection)
@@ -63,20 +65,17 @@ public class IAPaddleMovement : MonoBehaviour
         if ( rightMovement > 0f ||leftMovement < 0f)
         {
             direction = Mathf.Clamp(direction/50, leftMovement,rightMovement);
-            Move(direction);
+            
+            transform.Translate(0f,-1f * paddleData.Speed * direction * moveSpeedMultiplier, 0f);
         }
+        */
         
     }
 
-    void Move(float movement)
-    {
-
-        transform.Translate(0f,-1f * paddleData.Speed * movement * moveSpeedMultiplier, 0f);
-    }
-    private void LateUpdate()
+    /*private void LateUpdate()
     {
         CollisionRays();
-    }
+    }*/
     
 
     private void CollisionRays()

@@ -8,8 +8,10 @@ using Gyroscope = UnityEngine.Gyroscope;
 
 public class PaddleMovement : MonoBehaviour
 {
-    [SerializeField] private PaddleData paddleData;
+    [SerializeField] public PaddleData paddleData;
+    public float rayDistance;
     
+
     private float leftMovement;
     private float rightMovement;
     void Start()
@@ -17,6 +19,7 @@ public class PaddleMovement : MonoBehaviour
         Input.compass.enabled = true;
         leftMovement = -1f;
         rightMovement = 1f;
+        rayDistance = paddleData.RayDistance;
     }
     private void Update()
     {
@@ -38,8 +41,8 @@ public class PaddleMovement : MonoBehaviour
     
     private void CollisionRays()
     {
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, paddleData.RayDistance, paddleData.LimitLayerMask);
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, paddleData.RayDistance, paddleData.LimitLayerMask);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, rayDistance, paddleData.LimitLayerMask);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, rayDistance, paddleData.LimitLayerMask);
         
         
         if (hitRight.collider != null)
@@ -66,7 +69,7 @@ public class PaddleMovement : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, new Vector2(transform.position.x,transform.position.y) + Vector2.right * paddleData.RayDistance);
-        Gizmos.DrawLine(transform.position, new Vector2(transform.position.x,transform.position.y) + Vector2.left * paddleData.RayDistance);
+        Gizmos.DrawLine(transform.position, new Vector2(transform.position.x,transform.position.y) + Vector2.right * rayDistance);
+        Gizmos.DrawLine(transform.position, new Vector2(transform.position.x,transform.position.y) + Vector2.left * rayDistance);
     }
 }

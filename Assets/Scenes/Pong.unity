@@ -372,6 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddleData: {fileID: 11400000, guid: 36322b19fa0caf44187d2665012b83f8, type: 2}
+  rayDistance: 0
 --- !u!212 &136650169
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -497,7 +498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e47eecb573085f49919d7a2ad4c7cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballSpawnPoint: {fileID: 0}
 --- !u!1 &269182852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2321,6 +2321,9 @@ MonoBehaviour:
   paddleData: {fileID: 11400000, guid: 54e42ba3084cd7b4c83cf58b69dfdf7f, type: 2}
   reactionDistance: 0.5
   ball: {fileID: 1954385741}
+  distance: 0
+  treshold: 0.2
+  reactionCooldown: 0
   aiDetection: 0.75
   direction: 0
   moveSpeedMultiplier: 0.25

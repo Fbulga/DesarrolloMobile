@@ -15,7 +15,7 @@ MonoBehaviour:
   speed: 5
   collisionRadius: 1.68
   movementSensitivity: 0.75
-  rayDistance: 0.7
+  rayDistance: 0.73
   limitLayerMask:
     serializedVersion: 2
     m_Bits: 64
