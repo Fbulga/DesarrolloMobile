@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionCheck: {fileID: 9212702855680048538}
   ballData: {fileID: 11400000, guid: 82939cc4b1bf3634d8fbad5de23937fe, type: 2}
+  speedIncreaseRatio: 10
 --- !u!114 &9212702855680048538
 MonoBehaviour:
   m_ObjectHideFlags: 0

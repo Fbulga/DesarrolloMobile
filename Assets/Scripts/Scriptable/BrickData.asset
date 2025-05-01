@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clip: {fileID: 0}
   powerUps:
-  - {fileID: 1749258037446137727, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
-  - {fileID: 3175374739091321078, guid: e78073af43622534fa354f414a5820e0, type: 3}
-  - {fileID: 1772295241752277830, guid: 8cb72b7a589ee7642890551458ae1ede, type: 3}
+  - {fileID: 11400000, guid: 3d4df581e27797340bbdb8e12ee07037, type: 2}
+  - {fileID: 11400000, guid: 30df4f9470dc87e41a10840cc01ad219, type: 2}
+  - {fileID: 11400000, guid: 20db04846c3519545b4265370568945a, type: 2}
   dropChance: 1

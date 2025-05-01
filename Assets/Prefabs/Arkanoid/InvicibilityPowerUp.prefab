@@ -134,8 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d049357c2281314989dfc0118d07b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  detectionRadius: 0.4
+  powerUpPrefab: {fileID: 1749258037446137727}
   powerUpEffect: {fileID: 11400000, guid: 3d4df581e27797340bbdb8e12ee07037, type: 2}
   colliders:
   - {fileID: 0}

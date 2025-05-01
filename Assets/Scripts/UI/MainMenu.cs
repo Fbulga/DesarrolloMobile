@@ -1,16 +1,16 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
     public class MainMenu:MonoBehaviour
     {
         public void PlayArkanoid()
         {
-            SceneManager.LoadScene("Arkanoid");
+            GameManager.Instance.OnChangeSceneRequested?.Invoke("Arkanoid");
         }
 
         public void PlayPong()
         {
-            SceneManager.LoadScene("Pong");
+            GameManager.Instance.OnChangeSceneRequested?.Invoke("Pong");
         }
         public void Quit()
         {

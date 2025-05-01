@@ -14,7 +14,7 @@ public class Invincibility : EffectSO
         var paddle = gameObject.GetComponent<PaddleEffect>();
         if (paddle != null)
         {
-            ArkanoidGameManager.Instance.DeactivateDeadZone(duration);
+            ArkanoidManager.Instance.DeactivateDeadZone(duration);
         }
     }
 }

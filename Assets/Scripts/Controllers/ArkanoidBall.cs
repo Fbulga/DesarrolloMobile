@@ -18,7 +18,7 @@ public class ArkanoidBall : MonoBehaviour
 
     private void Start()
     {
-        ArkanoidGameManager.Instance.NewBallInGame(this.gameObject);
+        ArkanoidManager.Instance.OnNewBall?.Invoke(this.gameObject);
         circleCollider2D = GetComponent<CircleCollider2D>();
         circleCollider2D.radius = ballData.CollisionRadius;
         direction = new Vector2(Random.Range(-1f,1f), -1f);
@@ -76,8 +76,7 @@ public class ArkanoidBall : MonoBehaviour
 
     private void DeactivateBall()
     {
-        ArkanoidGameManager.Instance.RemoveBall(this.gameObject);
-        Destroy(gameObject);
+        ArkanoidManager.Instance.OnRemoveBall?.Invoke(this.gameObject);
     }
     void OnDrawGizmos()
     {

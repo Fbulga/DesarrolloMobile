@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour
@@ -8,7 +9,7 @@ public class PowerUp : MonoBehaviour
     private float speed;
     private float detectionRadius;
     
-    [SerializeField] private EffectSO powerUpEffect;
+    [SerializeField] public EffectSO powerUpEffect;
     [SerializeField] private Collider2D[] colliders = new Collider2D[2];
     [SerializeField] private CollisionCheck collisionCheck;
     private CircleCollider2D circleCollider2D;
@@ -57,7 +58,14 @@ public class PowerUp : MonoBehaviour
 
     void DeactivatePowerUp()
     {
-        Destroy(gameObject);
+        if (powerUpEffect != null && powerUpEffect.Prefab != null)
+        {
+            PowerUpPoolManager.Instance.ReturnPowerUp(gameObject, powerUpEffect.Prefab);
+        }
+        else
+        {
+            Destroy(gameObject); // Fallback
+        }
     }
     
     

@@ -1157,6 +1157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 312451204}
   - component: {fileID: 312451203}
+  - component: {fileID: 312451205}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1176,6 +1177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a39d400963ef743995214fc9f12e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScore: 0
+  modeManager: {fileID: 0}
   scoreText: {fileID: 2085853304}
   activeBallsLimit: 10
 --- !u!4 &312451204
@@ -1193,6 +1196,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &312451205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312451202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c10d6b4edd7205418f8c08c307fdd7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &405760564
 GameObject:
   m_ObjectHideFlags: 0

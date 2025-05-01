@@ -15,7 +15,7 @@ public class Brick : MonoBehaviour, IBreakable
 
     private void Start()
     {
-        ArkanoidGameManager.Instance.NewBrickInGame();
+        ArkanoidManager.Instance.OnNewBrick?.Invoke();
     }
 
     public void DestroyMe()
@@ -23,7 +23,7 @@ public class Brick : MonoBehaviour, IBreakable
         if (destroyed) return;
         TryDropPowerUp();
         destroyed = true;
-        ArkanoidGameManager.Instance.DestroyBrick(brickPoints);
+        ArkanoidManager.Instance.OnDestroyBrick?.Invoke(brickPoints);
         Destroy(gameObject);            
     }
 
@@ -38,9 +38,10 @@ public class Brick : MonoBehaviour, IBreakable
         dropChance = Random.value;
         if (dropChance <= data.DropChance && data.PowerUps.Length > 0f)
         {
-            Instantiate(data.PowerUps[Random.Range(0, data.PowerUps.Length)], transform.position, Quaternion.identity);
-            Debug.Log("PowerUp Detected");
+            EffectSO effectSO = data.PowerUps[Random.Range(0, data.PowerUps.Length)];
+            GameObject obj = PowerUpPoolManager.Instance.GetPowerUp(effectSO.Prefab, transform.position);
+            PowerUp powerUp = obj.GetComponent<PowerUp>();
+            powerUp.powerUpEffect = effectSO;
         }
-
     }
 }

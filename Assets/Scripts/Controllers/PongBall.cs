@@ -23,16 +23,14 @@ public class PongBall : MonoBehaviour
         circleCollider2D.radius = ballData.CollisionRadius;
         direction = new Vector2(Random.Range(-1f,1f), -1f);
         speed = ballData.Speed;
+        speedIncreaseRatio = PongManager.Instance.speedIncreaseRatio;
     }
 
     private void Update()
     {
-        
         transform.position += (Vector3)(direction * (speed * Time.deltaTime));
         Physics2D.OverlapCircleNonAlloc(transform.position,ballData.CollisionRadius,colliders,ballData.ObstacleLayer);
         CheckCollisions();
-        
-        
     }
 
     private void CheckCollisions()
@@ -49,13 +47,13 @@ public class PongBall : MonoBehaviour
                 {
                     if (scoreZone.IsPlayer)
                     {
-                        PongGameManager.Instance.IAScored();
+                        PongManager.Instance.OnIAScored?.Invoke();
                         ScoreBall();
                         Debug.Log("Collision Detected");
                     }
                     else
                     {
-                        PongGameManager.Instance.PlayerScored();
+                        PongManager.Instance.OnPlayerScored?.Invoke();
                         ScoreBall();
                         Debug.Log("Collision Detected");
                     }
@@ -94,7 +92,7 @@ public class PongBall : MonoBehaviour
     private void ScoreBall()
     {
         speed = ballData.Speed;
-        transform.position =  PongGameManager.Instance.BallSpawn.transform.position;
+        transform.position =  PongManager.Instance.BallSpawn.transform.position;
         SetDirection(direction * new Vector2(0f,-1f));
     }
     void OnDrawGizmos()
