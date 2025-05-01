@@ -17,4 +17,12 @@ public class Pause : MonoBehaviour
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
     }
+    
+    public void MainMenu()
+    {
+        Debug.Log("MenuPressed");
+        Time.timeScale = 1;
+        GameManager.Instance.OnMainMenu?.Invoke();
+        GameManager.Instance.OnChangeSceneRequested?.Invoke("Menu");
+    }
 }
