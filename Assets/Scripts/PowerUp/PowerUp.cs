@@ -58,14 +58,7 @@ public class PowerUp : MonoBehaviour
 
     void DeactivatePowerUp()
     {
-        if (powerUpEffect != null && powerUpEffect.Prefab != null)
-        {
-            PowerUpPoolManager.Instance.ReturnPowerUp(gameObject, powerUpEffect.Prefab);
-        }
-        else
-        {
-            Destroy(gameObject); // Fallback
-        }
+        ArkanoidPoolManager.Instance.ReturnPowerUp(this.gameObject,powerUpEffect.Prefab);
     }
     
     

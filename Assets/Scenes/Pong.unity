@@ -592,7 +592,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 312451204}
-  - component: {fileID: 312451203}
   - component: {fileID: 312451205}
   m_Layer: 0
   m_Name: Managers
@@ -601,22 +600,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &312451203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312451202}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2a39d400963ef743995214fc9f12e39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerScore: 0
-  modeManager: {fileID: 0}
-  scoreText: {fileID: 0}
-  activeBallsLimit: 10
 --- !u!4 &312451204
 Transform:
   m_ObjectHideFlags: 0
@@ -646,6 +629,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScore: 0
   modeManager: {fileID: 0}
+  speedIncreaseRatio: 25
+  maxSpeedFactor: 2.5
   pointsText: {fileID: 1086964095}
   ballSpawn: {fileID: 1199063964}
 --- !u!1 &428214148
@@ -771,7 +756,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &634775717
+--- !u!1001 &720606707
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -823,15 +808,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: PongBall
       objectReference: {fileID: 0}
+    - target: {fileID: 6199170638837260914, guid: e2f41e96fe9dbc541a1ec1537b1ddb9f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8333535272212696881, guid: e2f41e96fe9dbc541a1ec1537b1ddb9f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8333535272212696881, guid: e2f41e96fe9dbc541a1ec1537b1ddb9f, type: 3}
       propertyPath: speedIncreaseRatio
       value: 15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8333535272212696881, guid: e2f41e96fe9dbc541a1ec1537b1ddb9f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6199170638837260914, guid: e2f41e96fe9dbc541a1ec1537b1ddb9f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 720606715}
   m_SourcePrefab: {fileID: 100100000, guid: e2f41e96fe9dbc541a1ec1537b1ddb9f, type: 3}
+--- !u!1 &720606708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6199170638837260914, guid: e2f41e96fe9dbc541a1ec1537b1ddb9f, type: 3}
+  m_PrefabInstance: {fileID: 720606707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &720606709 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9212702855680048538, guid: e2f41e96fe9dbc541a1ec1537b1ddb9f, type: 3}
+  m_PrefabInstance: {fileID: 720606707}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720606708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9228636f61fd15a448c3322d8393e1ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &720606714 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4013535886687311767, guid: e2f41e96fe9dbc541a1ec1537b1ddb9f, type: 3}
+  m_PrefabInstance: {fileID: 720606707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &720606715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720606708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90ce7c4797bd054e9e6bc518c0c83b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionCheck: {fileID: 720606709}
+  ballData: {fileID: 11400000, guid: 82939cc4b1bf3634d8fbad5de23937fe, type: 2}
 --- !u!1 &890664287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,11 +2541,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821421471}
   m_CullTransparentMesh: 1
---- !u!4 &1954385741 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4013535886687311767, guid: e2f41e96fe9dbc541a1ec1537b1ddb9f, type: 3}
-  m_PrefabInstance: {fileID: 634775717}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1989956697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2592,7 +2619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paddleData: {fileID: 11400000, guid: 54e42ba3084cd7b4c83cf58b69dfdf7f, type: 2}
   reactionDistance: 0.5
-  ball: {fileID: 1954385741}
+  ball: {fileID: 720606714}
   distance: 0
   treshold: 0.2
   reactionCooldown: 0
@@ -2809,5 +2836,5 @@ SceneRoots:
   - {fileID: 890664291}
   - {fileID: 1426315400}
   - {fileID: 312451204}
-  - {fileID: 634775717}
+  - {fileID: 720606707}
   - {fileID: 1199063965}

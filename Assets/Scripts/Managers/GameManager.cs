@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
     {
         previousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
-        Debug.Log(previousScene);
     }
     
     private void HandleGameOver(float score, string reason)
@@ -65,7 +64,6 @@ public class GameManager : MonoBehaviour
     {
         if (modeManager != null)
         {
-            Debug.Log("Reset Game Mode");
             modeManager.ResetManager();
         }
     }
@@ -82,7 +80,6 @@ public class GameManager : MonoBehaviour
     { 
         HandleResetGameMode();
         Destroy(modeManager.gameObject);
-        Debug.Log(previousScene);
         HandleChangeScene(previousScene);
     }
     

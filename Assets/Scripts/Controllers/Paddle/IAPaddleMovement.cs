@@ -36,7 +36,7 @@ public class IAPaddleMovement : MonoBehaviour
 
         CollisionRays();
         
-        ballDirection = ball.GetComponent<PongBall>().Direction;
+        ballDirection = ball.GetComponent<BaseBall>().Direction;
         if (ballDirection.y > 0f)
         {
             if(Time.time >= nextReactionTime )

@@ -12,7 +12,12 @@ public class PongManager : GameManager
     public Action OnPlayerScored;
     public Action OnIAScored;
 
-    [SerializeField] public float speedIncreaseRatio{get; private set;}
+    [SerializeField] private float speedIncreaseRatio;
+    public float SpeedIncreaseRatio => speedIncreaseRatio;
+    
+    [SerializeField] private float maxSpeedFactor;
+    public float MaxSpeedFactor => maxSpeedFactor;
+
     [SerializeField] TextMeshProUGUI pointsText;
     [SerializeField] GameObject ballSpawn;
 

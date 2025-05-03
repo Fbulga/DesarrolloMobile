@@ -39,7 +39,7 @@ public class Brick : MonoBehaviour, IBreakable
         if (dropChance <= data.DropChance && data.PowerUps.Length > 0f)
         {
             EffectSO effectSO = data.PowerUps[Random.Range(0, data.PowerUps.Length)];
-            GameObject obj = PowerUpPoolManager.Instance.GetPowerUp(effectSO.Prefab, transform.position);
+            GameObject obj = ArkanoidPoolManager.Instance.GetPowerUp(effectSO.Prefab, transform.position);
             PowerUp powerUp = obj.GetComponent<PowerUp>();
             powerUp.powerUpEffect = effectSO;
         }

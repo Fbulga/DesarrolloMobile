@@ -1,22 +1,27 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "MultiBall", menuName = "PowerUp/MultiBall", order = 0)]
 public class MultiBall : EffectSO
 {
-    
     [SerializeField] private float powerUpSpeed; 
     protected override float speed => powerUpSpeed;
     
-    [SerializeField] GameObject ballPrefab;
-
     public override void Execute(GameObject gameObject)
     {
-        if (ArkanoidManager.Instance.ActiveBalls.Count <= ArkanoidManager.Instance.ActiveBallsLimit)
+        var activeBalls = ArkanoidPoolManager.Instance.ActivePool[ArkanoidManager.Instance.ballPrefab];
+        var ballsCopy = new List<GameObject>(activeBalls);
+
+        foreach (GameObject ball in ballsCopy)
         {
-            foreach (GameObject ball in ArkanoidManager.Instance.ActiveBalls)
+            if (ball.activeInHierarchy)
             {
-                var newBall = Instantiate(ballPrefab, ball.transform.position, Quaternion.identity);
-                newBall.GetComponent<ArkanoidBall>().SetDirection(ball.GetComponent<ArkanoidBall>().Direction * new Vector2(-1f,1f));
+                if (ArkanoidPoolManager.Instance.ActivePool[ArkanoidManager.Instance.ballPrefab].Count <=
+                    ArkanoidManager.Instance.ActiveBallsLimit)
+                {
+                    var newBall = ArkanoidPoolManager.Instance.GetBall(ArkanoidManager.Instance.ballPrefab,ball.transform.position);
+                    newBall.GetComponent<BaseBall>().SetDirection(ball.GetComponent<BaseBall>().Direction * new Vector2(-1f, 1f));
+                }
             }
         }
     }

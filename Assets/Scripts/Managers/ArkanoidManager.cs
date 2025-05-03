@@ -8,8 +8,8 @@ public class ArkanoidManager : GameManager
 {
     public static ArkanoidManager Instance;
 
-    public Action<GameObject> OnNewBall;
-    public Action<GameObject> OnRemoveBall;
+    public Action OnNewBall;
+    public Action OnRemoveBall;
     public Action OnNewBrick;
     public Action<int> OnDestroyBrick;
     
@@ -19,14 +19,13 @@ public class ArkanoidManager : GameManager
     private int ballsInGame = 0;
     
     
-    private List<GameObject> activeBalls = new List<GameObject>();
-    public List<GameObject> ActiveBalls => activeBalls;
+    [SerializeField] public GameObject ballPrefab;
+    [SerializeField] private Transform spawnPoint;
     [SerializeField] private int activeBallsLimit;
     public int ActiveBallsLimit => activeBallsLimit;
-
+    
 
     private DeadZone deadZone;
-    
     
     private void Awake()
     {
@@ -45,32 +44,23 @@ public class ArkanoidManager : GameManager
         OnRemoveBall += HandleRemoveBallInGame;
         OnNewBrick += HandleNewBrick;
         OnDestroyBrick += HandleDestroyBrick;
+        
     }
 
 
     private void Start()
     {
         UpdateScoreText();
+        ArkanoidPoolManager.Instance.GetBall(ballPrefab, spawnPoint.position);
     }
-
-
     
-    private void HandleBallInGame(GameObject ball)
+    private void HandleBallInGame()
     {
         ballsInGame++;
-        if (!activeBalls.Contains(ball))
-        {
-            activeBalls.Add(ball);
-        }
     }
-    private void HandleRemoveBallInGame(GameObject ball)
+    private void HandleRemoveBallInGame()
     {
         ballsInGame--;
-        if (activeBalls.Contains(ball))
-        {
-            activeBalls.Remove(ball);
-            Destroy(ball);
-        }
         
         if (ballsInGame <= 0)
         {
@@ -112,7 +102,6 @@ public class ArkanoidManager : GameManager
         playerScore = 0;
         bricksInGame = 0;
         ballsInGame = 0;
-        activeBalls.Clear();
     }
     protected override void UpdateScoreText()
     {
@@ -125,4 +114,5 @@ public class ArkanoidManager : GameManager
             scoreText = GameObject.Find("PointsText").GetComponent<TextMeshProUGUI>();
         }
     }
+    
 }
