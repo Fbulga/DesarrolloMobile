@@ -10,12 +10,15 @@ public class Brick : MonoBehaviour, IBreakable
     [SerializeField] private BrickData data;
     [SerializeField] private int brickPoints;
     private float dropChance;
+    private SpriteRenderer spriteRenderer;
     
     private bool destroyed = false;
-
+    
     private void Start()
     {
         ArkanoidManager.Instance.OnNewBrick?.Invoke();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = data.LifeColors[health];
     }
 
     public void DestroyMe()
@@ -30,6 +33,7 @@ public class Brick : MonoBehaviour, IBreakable
     public void TryDestroyMe()
     {
         health--;
+        UpdateColor(health);
         if (health <= 0) DestroyMe();
     }
 
@@ -39,9 +43,14 @@ public class Brick : MonoBehaviour, IBreakable
         if (dropChance <= data.DropChance && data.PowerUps.Length > 0f)
         {
             EffectSO effectSO = data.PowerUps[Random.Range(0, data.PowerUps.Length)];
-            GameObject obj = ArkanoidPoolManager.Instance.GetPowerUp(effectSO.Prefab, transform.position);
+            GameObject obj = PoolManager.Instance.GetPowerUp(effectSO.Prefab, transform.position);
             PowerUp powerUp = obj.GetComponent<PowerUp>();
             powerUp.powerUpEffect = effectSO;
         }
+    }
+
+    private void UpdateColor(int health)
+    {
+        spriteRenderer.color = data.LifeColors[health];
     }
 }

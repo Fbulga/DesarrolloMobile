@@ -33,6 +33,6 @@ public class ArkanoidBall : BaseBall
 
     private void DisableBall()
     {
-        ArkanoidPoolManager.Instance.ReturnBall(gameObject,ArkanoidManager.Instance.ballPrefab);
+        PoolManager.Instance.ReturnBall(gameObject,ArkanoidManager.Instance.ballPrefab);
     }
 }

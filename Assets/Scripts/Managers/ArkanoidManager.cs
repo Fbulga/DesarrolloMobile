@@ -51,7 +51,7 @@ public class ArkanoidManager : GameManager
     private void Start()
     {
         UpdateScoreText();
-        ArkanoidPoolManager.Instance.GetBall(ballPrefab, spawnPoint.position);
+        PoolManager.Instance.GetBall(ballPrefab, spawnPoint.position);
     }
     
     private void HandleBallInGame()

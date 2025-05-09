@@ -75,12 +75,14 @@ public class GameManager : MonoBehaviour
     {
         Destroy(modeManager.gameObject);
         modeManager = null;
+        if(PoolManager.Instance != null) PoolManager.Instance.OnClearPool?.Invoke();
     }
     private void HandlePlayAgain()
     { 
         HandleResetGameMode();
         Destroy(modeManager.gameObject);
         HandleChangeScene(previousScene);
+        PoolManager.Instance.OnClearPool?.Invoke();
     }
     
     protected virtual void ResetManager(){}

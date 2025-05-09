@@ -1,10 +1,13 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArkanoidPoolManager : MonoBehaviour
+public class PoolManager : MonoBehaviour
 {
-    public static ArkanoidPoolManager Instance;
+    public static PoolManager Instance;
 
+    public Action OnClearPool;
+    
     private Dictionary<GameObject, Queue<GameObject>> unActivePool = new Dictionary<GameObject, Queue<GameObject>>();
     private Dictionary<GameObject, List<GameObject>> activePool = new Dictionary<GameObject, List<GameObject>>();
 
@@ -20,8 +23,9 @@ public class ArkanoidPoolManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        OnClearPool += HandleClearPool;
     }
-
+    
     private GameObject GetObject(GameObject prefab, Vector3 position)
     {
         if (!unActivePool.ContainsKey(prefab))
@@ -62,6 +66,11 @@ public class ArkanoidPoolManager : MonoBehaviour
         unActivePool[prefabKey].Enqueue(obj);
     }
 
+    private void HandleClearPool()
+    {
+        unActivePool.Clear();
+        activePool.Clear();
+    }
 
     public GameObject GetPowerUp(GameObject prefab, Vector3 position) => GetObject(prefab, position);
     public void ReturnPowerUp(GameObject obj, GameObject prefabKey) => ReturnObject(obj, prefabKey);

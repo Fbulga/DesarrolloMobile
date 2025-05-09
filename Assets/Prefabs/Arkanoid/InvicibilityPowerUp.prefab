@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 93c17ed73bb8edf4eaab20b8a94808bb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d1735ddaa86e8e64fa974a935d876128, type: 3}
+  m_Color: {r: 0, g: 1, b: 0.041511774, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -134,7 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d049357c2281314989dfc0118d07b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpPrefab: {fileID: 1749258037446137727}
   powerUpEffect: {fileID: 11400000, guid: 3d4df581e27797340bbdb8e12ee07037, type: 2}
   colliders:
   - {fileID: 0}
