@@ -13,14 +13,14 @@ public class GameManager : MonoBehaviour
     //Eventos
     public Action<string> OnChangeSceneRequested;
     public Action<GameManager> OnNewGameMode;
-    public Action<float, string> OnGameOver;
+    public Action<int, string> OnGameOver;
     public Action OnResetGameMode;
     public Action OnMainMenu;
     public Action OnPlayAgain;
     
     
-    [SerializeField] protected float playerScore;
-    public float PlayerScore => playerScore;
+    [SerializeField] protected int playerScore;
+    public int PlayerScore => playerScore;
 
     [SerializeField] private GameManager modeManager;
     
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
     
-    private void HandleGameOver(float score, string reason)
+    private void HandleGameOver(int score, string reason)
     {
         playerScore = score;
         HandleChangeScene(reason);
@@ -81,7 +81,10 @@ public class GameManager : MonoBehaviour
         HandleResetGameMode();
         Destroy(modeManager.gameObject);
         HandleChangeScene(previousScene);
-        PoolManager.Instance.OnClearPool?.Invoke();
+        if(PoolManager.Instance != null)
+        {
+            PoolManager.Instance.OnClearPool?.Invoke();
+        }
     }
     
     protected virtual void ResetManager(){}

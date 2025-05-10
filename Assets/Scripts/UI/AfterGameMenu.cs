@@ -9,18 +9,20 @@ public class AfterGameMenu : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = "Score: "+ GameManager.Instance.PlayerScore.ToString();
+            scoreText.text = $"Score: {GameManager.Instance.PlayerScore}";
         }   
     }
     
     public void PlayAgain()
     {
+        VibrationManager.VibrateMedium();
         GameManager.Instance.OnPlayAgain?.Invoke();
         GameManager.Instance.OnResetGameMode?.Invoke();
     }
     public void MainMenu()
     {
         Debug.Log("MenuPressed");
+        VibrationManager.VibrateMedium();
         GameManager.Instance.OnMainMenu?.Invoke();
         GameManager.Instance.OnChangeSceneRequested?.Invoke("Menu");
     }

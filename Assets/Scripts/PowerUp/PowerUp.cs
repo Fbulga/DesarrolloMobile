@@ -39,11 +39,7 @@ public class PowerUp : MonoBehaviour
                 collider.TryGetComponent<DeadZone>(out DeadZone deadZone);
                 if (deadZone != null)
                 {
-                    if (deadZone.IsDeadly)
-                    {
                         DeactivatePowerUp();
-                        Debug.Log("Collision Detected");
-                    }
                 }
                 
                 collider.TryGetComponent<PaddleEffect>(out PaddleEffect paddle);

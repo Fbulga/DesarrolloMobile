@@ -33,11 +33,6 @@ public class PongBall : BaseBall
                     {
                         PongManager.Instance.OnIAScored?.Invoke();
                     }
-                    else
-                    {
-                        PongManager.Instance.OnPlayerScored?.Invoke();
-                    }
-
                     ResetBall();
                     Debug.Log("Pong: Scored");
                     return;

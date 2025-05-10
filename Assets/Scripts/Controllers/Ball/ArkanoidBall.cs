@@ -33,6 +33,7 @@ public class ArkanoidBall : BaseBall
 
     private void DisableBall()
     {
+        VibrationManager.VibrateMedium();
         PoolManager.Instance.ReturnBall(gameObject,ArkanoidManager.Instance.ballPrefab);
     }
 }

@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
 
 
 public class PongManager : GameManager
 {
     public static PongManager Instance;
     
-    public Action OnPlayerScored;
     public Action OnIAScored;
 
     [SerializeField] private float speedIncreaseRatio;
@@ -17,13 +17,17 @@ public class PongManager : GameManager
     public float MaxSpeedFactor => maxSpeedFactor;
 
     [SerializeField] TextMeshProUGUI pointsText;
+    [SerializeField] TextMeshProUGUI lifesText;
     [SerializeField] GameObject ballSpawn;
 
     
+    private float timer = 0f;
+    [SerializeField] private int playerLifes;
     
+
+
     public GameObject BallSpawn => ballSpawn;
     
-    private float iAPoints;
     
     private void Awake()
     {
@@ -36,43 +40,49 @@ public class PongManager : GameManager
         }
         DontDestroyOnLoad(this);
         GameManager.Instance.OnNewGameMode?.Invoke(this);
-        OnPlayerScored += HandlePlayerPoint;
         OnIAScored += HandleIAPoint;
     }
 
     private void Start()
     {
+        UpdateLifesText();
+        UpdateScoreText();
+    }
 
-        UpdateScoreText();
-    }
-    
-    
-    private void HandlePlayerPoint()
+    private void Update()
     {
-        playerScore++;
-        UpdateScoreText();
+        timer += Time.deltaTime;
+
+        if (timer >= 1f && playerLifes > 0)
+        {
+            UpdateScoreText();
+            playerScore++;
+            timer -= 1f;
+            Debug.Log("Contador: " + playerScore);
+        }
     }
+    
     private void HandleIAPoint()
     { 
-        iAPoints++;
-        UpdateScoreText();
+        playerLifes--;
+        UpdateLifesText();
+        if (playerLifes <= 0)
+        {
+            GameManager.Instance.OnGameOver?.Invoke(playerScore,"PongSurvive");
+        }
     }
     protected override void ResetManager()
     {
         playerScore = 0;
-        iAPoints = 0;
     }
     protected override void UpdateScoreText()
     {
-        pointsText.text = "Player: " + playerScore.ToString() + " : " + iAPoints.ToString() + " :IA";
-
-        if (iAPoints >= 3)
-        {
-            GameManager.Instance.OnGameOver?.Invoke(playerScore,"Loss");
-        }
-        else if (playerScore >= 3)
-        {
-            GameManager.Instance.OnGameOver?.Invoke(playerScore,"Win");
-        }
+        pointsText.text = $"Score: {playerScore}";
     }
+
+    private void UpdateLifesText()
+    {
+        lifesText.text = $"Lifes left: {playerLifes}";
+    }
+    
 }

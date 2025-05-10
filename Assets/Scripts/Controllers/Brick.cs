@@ -23,6 +23,7 @@ public class Brick : MonoBehaviour, IBreakable
         if (destroyed) return;
         TryDropPowerUp();
         destroyed = true;
+        VibrationManager.VibrateMedium();
         ArkanoidManager.Instance.OnDestroyBrick?.Invoke(brickPoints);
         Destroy(gameObject);            
     }
