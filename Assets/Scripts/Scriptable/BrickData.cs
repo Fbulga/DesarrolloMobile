@@ -14,4 +14,8 @@ public class BrickData : ScriptableObject
     public float DropChance => dropChance;
     [SerializeField] private Color[] lifeColors;
     public Color[] LifeColors => lifeColors;
+    
+    [SerializeField] private GameObject particlePrefab;
+    public GameObject ParticlePrefab => particlePrefab;
+    
 }

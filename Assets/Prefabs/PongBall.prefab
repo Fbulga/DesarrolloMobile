@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4013535886687311767}
   - component: {fileID: 4228778957959196571}
   - component: {fileID: 491961996993300662}
-  - component: {fileID: 8333535272212696881}
   - component: {fileID: 9212702855680048538}
   m_Layer: 0
   m_Name: PongBall
@@ -122,21 +121,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &8333535272212696881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6199170638837260914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dec0bda65283b741a9adfba32f4acea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionCheck: {fileID: 9212702855680048538}
-  ballData: {fileID: 11400000, guid: 82939cc4b1bf3634d8fbad5de23937fe, type: 2}
-  speedIncreaseRatio: 10
 --- !u!114 &9212702855680048538
 MonoBehaviour:
   m_ObjectHideFlags: 0

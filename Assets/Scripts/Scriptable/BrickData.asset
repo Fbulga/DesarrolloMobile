@@ -19,8 +19,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3d4df581e27797340bbdb8e12ee07037, type: 2}
   dropChance: 0.33
   lifeColors:
-  - {r: 0.13933086, g: 1, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0.047468662, a: 1}
   - {r: 0.9450549, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.62562144, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0.083918095, a: 1}
+  - {r: 0.17768145, g: 1, b: 0, a: 1}
   - {r: 0, g: 0.09174347, b: 1, a: 1}
+  particlePrefab: {fileID: 2778053770526793463, guid: 61805bdd999619a4fb9d3caa8227ecd9, type: 3}

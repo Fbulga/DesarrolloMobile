@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -33,6 +30,7 @@ public class Brick : MonoBehaviour, IBreakable
     public void TryDestroyMe()
     {
         health--;
+        Particles(spriteRenderer.color);
         UpdateColor(health);
         if (health <= 0) DestroyMe();
     }
@@ -52,5 +50,13 @@ public class Brick : MonoBehaviour, IBreakable
     private void UpdateColor(int health)
     {
         spriteRenderer.color = data.LifeColors[health];
+    }
+
+    private void Particles(Color color)
+    {
+        var ps = data.ParticlePrefab.GetComponent<ParticleSystem>();
+        var main = ps.main;
+        main.startColor = color;
+        Instantiate(data.ParticlePrefab, transform.position, Quaternion.identity);
     }
 }
