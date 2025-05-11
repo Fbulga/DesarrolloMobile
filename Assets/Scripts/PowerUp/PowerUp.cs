@@ -13,11 +13,13 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private Collider2D[] colliders = new Collider2D[2];
     [SerializeField] private CollisionCheck collisionCheck;
     private CircleCollider2D circleCollider2D;
+    private float lifeSpan = 5f;
     private void Start()
     {
         circleCollider2D = GetComponent<CircleCollider2D>();
         speed = powerUpEffect.Speed;
         detectionRadius = powerUpEffect.DetectionRadius;
+        StartCoroutine(DeactivatePowerUpAfterLifeSpan());
     }
 
     void Update()
@@ -55,6 +57,12 @@ public class PowerUp : MonoBehaviour
     void DeactivatePowerUp()
     {
         PoolManager.Instance.ReturnPowerUp(this.gameObject,powerUpEffect.Prefab);
+    }
+
+    IEnumerator DeactivatePowerUpAfterLifeSpan()
+    {
+        yield return new WaitForSeconds(lifeSpan);
+        DeactivatePowerUp();
     }
     
     

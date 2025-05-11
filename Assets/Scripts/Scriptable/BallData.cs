@@ -13,4 +13,7 @@ public class BallData : ScriptableObject
     [SerializeField] private LayerMask obstacleLayer;
 
     public LayerMask ObstacleLayer => obstacleLayer;
+    
+    [SerializeField] private GameObject particleBouncePrefab;
+    public GameObject ParticleBouncePrefab => particleBouncePrefab;
 }

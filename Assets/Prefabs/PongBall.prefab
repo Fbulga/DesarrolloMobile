@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4228778957959196571}
   - component: {fileID: 491961996993300662}
   - component: {fileID: 9212702855680048538}
+  - component: {fileID: 6438800281950088266}
   m_Layer: 0
   m_Name: PongBall
   m_TagString: Untagged
@@ -133,3 +134,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9228636f61fd15a448c3322d8393e1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6438800281950088266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6199170638837260914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90ce7c4797bd054e9e6bc518c0c83b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionCheck: {fileID: 9212702855680048538}
+  ballData: {fileID: 11400000, guid: 82939cc4b1bf3634d8fbad5de23937fe, type: 2}
+  escalaRebote: {x: 0.5, y: 0.5, z: 0.25}
+  duracionAnimacion: 0.2
+  colorRebote: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  efectoParticulas: {fileID: 0}

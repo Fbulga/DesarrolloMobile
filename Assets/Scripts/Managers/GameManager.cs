@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         OnPlayAgain += HandlePlayAgain;
     }
 
+
     private void HandleChangeScene(string sceneName)
     {
         previousScene = SceneManager.GetActiveScene().name;
@@ -66,6 +67,8 @@ public class GameManager : MonoBehaviour
             modeManager.ResetManager();
         }
     }
+    
+
     private void HandleNewGameMode(GameManager gameModeManager)
     {
         modeManager = gameModeManager;

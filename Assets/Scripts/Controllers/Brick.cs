@@ -32,6 +32,7 @@ public class Brick : MonoBehaviour, IBreakable
     {
         health--;
         Particles(spriteRenderer.color);
+        TryDropPowerUp();
         UpdateColor(health);
         if (health <= 0) DestroyMe();
     }
@@ -58,6 +59,6 @@ public class Brick : MonoBehaviour, IBreakable
         var ps = data.ParticlePrefab.GetComponent<ParticleSystem>();
         var main = ps.main;
         main.startColor = color;
-        Instantiate(data.ParticlePrefab, transform.position, Quaternion.identity);
+        PoolManager.Instance.GetPowerUp(data.ParticlePrefab, transform.position);
     }
 }

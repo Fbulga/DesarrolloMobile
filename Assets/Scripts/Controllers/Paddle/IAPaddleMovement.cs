@@ -7,77 +7,72 @@ using UnityEngine.Serialization;
 public class IAPaddleMovement : MonoBehaviour
 {
     [SerializeField] private PaddleData paddleData;
-    [SerializeField] private float reactionDistance;
     [SerializeField] public Transform ball;
     
     
+
+    private float aimOffset;    
     private float leftMovement;
     private float rightMovement;
-
     private Vector2 ballDirection;
+    [SerializeField] float threshold;
+    [SerializeField] private float reactionDistance;
+    [SerializeField] private float aimOffsetRange;    // cuanto puede desviarse el target
+    [SerializeField] private float aiReaction; // entre 1 (facil) y 10 (dificl)
     
-    public float distance;
-    [SerializeField] float treshold;
-    [SerializeField] private float reactionCooldown;
-    private float nextReactionTime;
-    
-    
-    [SerializeField]public float aiDetection;
-  
-    public float direction;
-    public float moveSpeedMultiplier;
     void Start()
     {
         leftMovement = -1f;
         rightMovement = 1f;
+        aiReaction = 5f;
     }
-    private void LateUpdate()
-    {  
-
+    private void Update()
+    {
         CollisionRays();
-        
+
         ballDirection = ball.GetComponent<BaseBall>().Direction;
+
         if (ballDirection.y > 0f)
         {
-            if(Time.time >= nextReactionTime )
-            distance = ball.position.x - transform.position.x;
-            float moveDir = Mathf.Sign(distance);
-            if ((moveDir > 0 && rightMovement > 0f) || (moveDir < 0 && leftMovement < 0f))
+            float distanceX = ball.position.x - transform.position.x;
+
+            if (Mathf.Abs(distanceX) > threshold)
             {
-                float moveStep = -moveDir * paddleData.Speed * Time.deltaTime;
-                if (Mathf.Abs(distance) > treshold)
+                float direction = Mathf.Sign(distanceX);
+
+                if ((direction > 0f && rightMovement > 0f) || (direction < 0f && leftMovement < 0f))
                 {
-                    transform.Translate(0f, moveStep, 0f);    
-                    nextReactionTime = Time.time + reactionCooldown;
+                    if (Mathf.Sign(aimOffset) != direction)
+                    {
+                        aimOffset = Random.Range(-aimOffsetRange, aimOffsetRange);
+                    }
+
+                    float moveStep = paddleData.Speed * Time.deltaTime;
+
+                    Vector3 targetPosition = new Vector3(ball.position.x + aimOffset,transform.position.y,transform.position.z);
+                    
+                    transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * aiReaction);
                 }
             }
         }
-        
-        
-        /*
-        ballDirection = ball.GetComponent<PongBall>().transform.position;
-        
-        if (Mathf.Abs(ballDirection.x - transform.position.x) > aiDetection)
-        {
-            direction = ballDirection.x > transform.position.x ? 1 : -1;
-        }
-
-        if ( rightMovement > 0f ||leftMovement < 0f)
-        {
-            direction = Mathf.Clamp(direction/50, leftMovement,rightMovement);
-            
-            transform.Translate(0f,-1f * paddleData.Speed * direction * moveSpeedMultiplier, 0f);
-        }
-        */
-        
     }
 
-    /*private void LateUpdate()
+    public void IncreaseDifficulty()
     {
-        CollisionRays();
-    }*/
+        if (aiReaction < 10f)
+        {
+            aiReaction++;
+        }
+    }
     
-
+    public void DecreaseDifficulty()
+    {
+        if (aiReaction > 1f)
+        {
+            aiReaction--;
+        }
+    }
+    
     private void CollisionRays()
     {
         RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, paddleData.RayDistance, paddleData.LimitLayerMask);

@@ -4,9 +4,10 @@ using Random = UnityEngine.Random;
 
 public class PongBall : BaseBall
 {
-    private float speedIncreaseRatio;
+    private int deviateCounter = 0;
     private float currentSpeed;
     private float maxSpeedFactor;
+    private float speedIncreaseRatio;
 
     protected override void Start()
     {
@@ -33,6 +34,10 @@ public class PongBall : BaseBall
                     {
                         PongManager.Instance.OnIAScored?.Invoke();
                     }
+                    else
+                    {
+                        PongManager.Instance.OnPlayerScored?.Invoke();
+                    }
                     ResetBall();
                     Debug.Log("Pong: Scored");
                     return;
@@ -47,19 +52,31 @@ public class PongBall : BaseBall
                 }
 
                 Reflect(response);
+                
+                deviateCounter++;
+                if (deviateCounter >= 5)
+                {
+                    DeviateBall();
+                }
             }
         }
     }
     
     private void ResetBall()
     {
+        deviateCounter = 0;
         currentSpeed = ballData.Speed;
         transform.position = PongManager.Instance.BallSpawn.transform.position;
         SetDirection(new Vector2(Random.Range(-1f, 1f), -1f));
     }
     
     protected override float GetSpeed() => currentSpeed;
-    
+
+    private void DeviateBall()
+    {
+        deviateCounter = 0;
+        SetDirection(new Vector2(direction.normalized.x * Random.Range(-1f,1f), direction.normalized.y));
+    }
     
 }
 
