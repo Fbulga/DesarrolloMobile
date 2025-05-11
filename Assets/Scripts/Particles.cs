@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Particles : MonoBehaviour
 {
-    [SerializeField] private GameObject particlePrefab;
+    [SerializeField] private BrickData particlePrefab;
     private void OnDisable()
     {
-        PoolManager.Instance.ReturnPowerUp(gameObject,particlePrefab);
+        PoolManager.Instance.ReturnPowerUp(gameObject,particlePrefab.ParticlesPrefab);
     }
 }

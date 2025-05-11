@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2e27a613647ce4ca2912f324f371a0, type: 3}
   m_Name: Invincibility
   m_EditorClassIdentifier: 
+  detectionRadius: 0.12
   prefab: {fileID: 1749258037446137727, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+  particlesPrefab: {fileID: 2778053770526793463, guid: bd78bbae77ad1584193c3beb2b190201, type: 3}
+  powerUpColor: {r: 0, g: 1, b: 0.043137256, a: 1}
   powerUpSpeed: 3
   duration: 10

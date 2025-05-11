@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5aad5dba4907e40bbcff2c2bf1934e, type: 3}
+  m_Name: BrickData 2
+  m_EditorClassIdentifier: 
+  clip: {fileID: 0}
+  powerUps:
+  - {fileID: 11400000, guid: 20db04846c3519545b4265370568945a, type: 2}
+  - {fileID: 11400000, guid: 30df4f9470dc87e41a10840cc01ad219, type: 2}
+  - {fileID: 11400000, guid: 3d4df581e27797340bbdb8e12ee07037, type: 2}
+  dropChance: 1
+  lifeColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0.047468662, a: 1}
+  - {r: 0.9450549, g: 1, b: 0, a: 1}
+  - {r: 0.17768145, g: 1, b: 0, a: 1}
+  - {r: 0, g: 0.09174347, b: 1, a: 1}
+  particlesPrefab: {fileID: 2778053770526793463, guid: bd78bbae77ad1584193c3beb2b190201, type: 3}
+  brickSFX: 4

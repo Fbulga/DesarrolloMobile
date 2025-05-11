@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f311c8269a495e9ce37659105d9619, type: 3}
   m_Name: MultiBall
   m_EditorClassIdentifier: 
+  detectionRadius: 0.12
   prefab: {fileID: 3175374739091321078, guid: e78073af43622534fa354f414a5820e0, type: 3}
+  particlesPrefab: {fileID: 2778053770526793463, guid: bd78bbae77ad1584193c3beb2b190201, type: 3}
+  powerUpColor: {r: 1, g: 0, b: 0, a: 1}
   powerUpSpeed: 4
-  ballPrefab: {fileID: 6199170638837260914, guid: 256ce6d02516a444ead2e06744852ea3, type: 3}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enum;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,8 +15,11 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private CollisionCheck collisionCheck;
     private CircleCollider2D circleCollider2D;
     private float lifeSpan = 5f;
+    private SpriteRenderer spriteRenderer;
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = powerUpEffect.PowerUpColor;
         circleCollider2D = GetComponent<CircleCollider2D>();
         speed = powerUpEffect.Speed;
         detectionRadius = powerUpEffect.DetectionRadius;
@@ -24,9 +28,9 @@ public class PowerUp : MonoBehaviour
 
     void Update()
     {
-        transform.position += (Vector3)(new Vector2(0f,-1f) * (speed * Time.deltaTime));
         Physics2D.OverlapCircleNonAlloc(transform.position,detectionRadius,colliders);
         CheckCollisions();
+        transform.position += (Vector3)(speed * new Vector2(0f,-1f) * Time.deltaTime);
     }
     
     private void CheckCollisions()
@@ -56,6 +60,8 @@ public class PowerUp : MonoBehaviour
 
     void DeactivatePowerUp()
     {
+        Particles(powerUpEffect.PowerUpColor);
+        SFXManager.Instance.PlaySFXClip(SFXType.PickPowerUp);
         PoolManager.Instance.ReturnPowerUp(this.gameObject,powerUpEffect.Prefab);
     }
 
@@ -65,7 +71,13 @@ public class PowerUp : MonoBehaviour
         DeactivatePowerUp();
     }
     
+    private void Particles(Color color)
+    {
+        var ps = powerUpEffect.ParticlesPrefab.GetComponent<ParticleSystem>();
+        var main = ps.main;
+        main.startColor = color;
+        PoolManager.Instance.GetPowerUp(powerUpEffect.ParticlesPrefab, transform.position);
+    }
     
-
 
 }

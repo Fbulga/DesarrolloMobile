@@ -1,4 +1,5 @@
 using System;
+using Enum;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -77,7 +78,10 @@ public class GameManager : MonoBehaviour
     {
         Destroy(modeManager.gameObject);
         modeManager = null;
-        if(PoolManager.Instance != null) PoolManager.Instance.OnClearPool?.Invoke();
+        if (PoolManager.Instance != null)
+        {
+            PoolManager.Instance.OnClearPool?.Invoke();
+        }
     }
     private void HandlePlayAgain()
     { 
@@ -92,5 +96,6 @@ public class GameManager : MonoBehaviour
     
     protected virtual void ResetManager(){}
     protected virtual void UpdateScoreText(){}
-    
+
+
 }

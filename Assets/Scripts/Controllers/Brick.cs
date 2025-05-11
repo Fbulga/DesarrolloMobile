@@ -21,7 +21,6 @@ public class Brick : MonoBehaviour, IBreakable
     public void DestroyMe()
     {
         if (destroyed) return;
-        TryDropPowerUp();
         destroyed = true;
         VibrationManager.VibrateMedium();
         ArkanoidManager.Instance.OnDestroyBrick?.Invoke(brickPoints);
@@ -34,6 +33,7 @@ public class Brick : MonoBehaviour, IBreakable
         Particles(spriteRenderer.color);
         TryDropPowerUp();
         UpdateColor(health);
+        SFXManager.Instance.PlaySFXClip(data.BrickSFX);
         if (health <= 0) DestroyMe();
     }
 
@@ -56,9 +56,9 @@ public class Brick : MonoBehaviour, IBreakable
 
     private void Particles(Color color)
     {
-        var ps = data.ParticlePrefab.GetComponent<ParticleSystem>();
+        var ps = data.ParticlesPrefab.GetComponent<ParticleSystem>();
         var main = ps.main;
         main.startColor = color;
-        PoolManager.Instance.GetPowerUp(data.ParticlePrefab, transform.position);
+        PoolManager.Instance.GetPowerUp(data.ParticlesPrefab, transform.position);
     }
 }

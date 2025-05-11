@@ -1,5 +1,7 @@
 using System;
+using Enum;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public abstract class BaseBall : MonoBehaviour
@@ -13,22 +15,16 @@ public abstract class BaseBall : MonoBehaviour
     public Vector2 Direction => direction;
     
     
-    [Header("Configuración de Escala")]
-    public Vector3 escalaRebote = new Vector3(1.2f, 0.8f, 1.0f);
-    public float duracionAnimacion = 0.2f;
-
-    [Header("Configuración de Color")]
-    public Color colorRebote = Color.yellow;
-
-    [Header("Efectos Visuales")]
-    public GameObject efectoParticulas;
-
-    private Vector3 escalaOriginal;
-    private Color colorOriginal;
+    [Header("Bounce Config")]
+    private Vector3 originalScale;
+    [SerializeField] private Vector3 bounceScale = new Vector3(0.5f, 0.5f, 0.25f);
+    [SerializeField] private Color bounceColor = Color.white;
+    private Color originalColor;
+    [SerializeField] private float animationLenght = 0.2f;
+    [SerializeField] private GameObject bounceParticles;
     private SpriteRenderer spriteRenderer;
-    private bool animando = false;
-
-    
+    private bool isAnimating = false;
+    [SerializeField] private SFXType bounceSFX; 
 
     protected virtual void Start()
     {
@@ -37,20 +33,20 @@ public abstract class BaseBall : MonoBehaviour
         direction = new Vector2(Random.Range(-1f, 1f), -1f);
         
         ///animacion
-        escalaOriginal = transform.localScale;
+        originalScale = transform.localScale;
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
-            colorOriginal = spriteRenderer.color;
+            originalColor = spriteRenderer.color;
         }
         EjecutarRebote();
     }
 
     protected virtual void Update()
     {
-        MoveBall();
         Physics2D.OverlapCircleNonAlloc(transform.position, ballData.CollisionRadius, colliders, ballData.ObstacleLayer);
         CheckCollisions();
+        MoveBall();
     }
 
     protected void MoveBall()
@@ -72,6 +68,7 @@ public abstract class BaseBall : MonoBehaviour
 
         
         EjecutarRebote();
+        SFXManager.Instance.PlaySFXClip(bounceSFX);
         direction = direction.normalized;
         
     }
@@ -88,7 +85,7 @@ public abstract class BaseBall : MonoBehaviour
     /// </summary>
     public void EjecutarRebote()
     {
-        if (!animando && gameObject.activeInHierarchy)
+        if (!isAnimating && gameObject.activeInHierarchy)
         {
             StartCoroutine(AnimacionRebote());
         }
@@ -96,32 +93,32 @@ public abstract class BaseBall : MonoBehaviour
 
     private System.Collections.IEnumerator AnimacionRebote()
     {
-        animando = true;
+        isAnimating = true;
 
         // Cambiar color
-        spriteRenderer.color = colorRebote;
+        spriteRenderer.color = bounceColor;
 
         // Reproducir efecto de partículas si está asignado
         if (ballData.ParticleBouncePrefab != null)
         {
-            //PoolManager.Instance.GetPowerUp(ballData.ParticleBouncePrefab,transform.position);
-            Instantiate(ballData.ParticleBouncePrefab, transform.position, Quaternion.identity);
+            PoolManager.Instance.GetPowerUp(ballData.ParticleBouncePrefab,transform.position);
+            //Instantiate(ballData.ParticleBouncePrefab, transform.position, Quaternion.identity);
         }
 
-        float mitadDuracion = duracionAnimacion / 2f;
+        float mitadDuracion = animationLenght / 2f;
 
-        yield return Escalar(escalaOriginal, escalaOriginal/2f, mitadDuracion);
+        yield return Escalar(originalScale, originalScale/2f, mitadDuracion);
         
         // Escalar hacia escalaRebote
-        yield return Escalar(escalaOriginal/2f, escalaRebote, mitadDuracion);
+        yield return Escalar(originalScale/2f, bounceScale, mitadDuracion);
 
         // Volver a la escala original
-        yield return Escalar(escalaRebote, escalaOriginal, mitadDuracion);
+        yield return Escalar(bounceScale, originalScale, mitadDuracion);
         
         // Restaurar color original
-        spriteRenderer.color = colorOriginal;
+        spriteRenderer.color = originalColor;
 
-        animando = false;
+        isAnimating = false;
     }
 
     private System.Collections.IEnumerator Escalar(Vector3 desde, Vector3 hasta, float duracion)

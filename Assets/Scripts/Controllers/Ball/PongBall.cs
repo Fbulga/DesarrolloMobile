@@ -67,7 +67,7 @@ public class PongBall : BaseBall
         deviateCounter = 0;
         currentSpeed = ballData.Speed;
         transform.position = PongManager.Instance.BallSpawn.transform.position;
-        SetDirection(new Vector2(Random.Range(-1f, 1f), -1f));
+        SetDirection(new Vector2(Random.Range(-1f, 1f), direction.y*-1f));
     }
     
     protected override float GetSpeed() => currentSpeed;

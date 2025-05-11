@@ -44,7 +44,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 1
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -224,7 +224,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9450549, g: 1, b: 0, a: 1}
+      maxColor: {r: 0.17768145, g: 1, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4901,4 +4901,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb33e7f25dc42db478208428239bcc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 2778053770526793463}
+  particlePrefab: {fileID: 11400000, guid: ac50c2d4a1dce774cab7c68e7d164dbc, type: 2}

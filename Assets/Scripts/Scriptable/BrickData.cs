@@ -1,4 +1,6 @@
+using Enum;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "BrickData", menuName = "Data/BrickData", order = 0)]
 public class BrickData : ScriptableObject
@@ -15,7 +17,10 @@ public class BrickData : ScriptableObject
     [SerializeField] private Color[] lifeColors;
     public Color[] LifeColors => lifeColors;
     
-    [SerializeField] private GameObject particlePrefab;
-    public GameObject ParticlePrefab => particlePrefab;
+    [SerializeField] private GameObject particlesPrefab;
+    public GameObject ParticlesPrefab => particlesPrefab;
+    
+    [SerializeField] private SFXType brickSFX;
+    public SFXType BrickSFX => brickSFX;
     
 }

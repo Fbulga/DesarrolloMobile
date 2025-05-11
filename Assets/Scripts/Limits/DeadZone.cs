@@ -14,7 +14,7 @@ public class DeadZone : MonoBehaviour
     [SerializeField] private Color safeColor;
 
     
-    private void Start()
+    protected virtual void Start()
     {
         ArkanoidManager.Instance.SetDeadZone(this);
         originalColor = gameObject.GetComponent<SpriteRenderer>().color;
