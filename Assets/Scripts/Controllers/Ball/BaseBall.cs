@@ -69,6 +69,7 @@ public abstract class BaseBall : MonoBehaviour
         
         EjecutarRebote();
         SFXManager.Instance.PlaySFXClip(bounceSFX);
+        StatManager.Instance.IncreaseStat(Stat.TotalBallBounces,1f);
         direction = direction.normalized;
         
     }

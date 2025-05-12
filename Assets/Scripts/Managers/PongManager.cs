@@ -1,4 +1,5 @@
 using System;
+using Enum;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
@@ -62,7 +63,6 @@ public class PongManager : GameManager
             UpdateScoreText();
             playerScore++;
             timer -= 1f;
-            Debug.Log("Contador: " + playerScore);
         }
     }
     
@@ -71,6 +71,7 @@ public class PongManager : GameManager
         aiPaddle.DecreaseDifficulty();
         playerLifes--;
         UpdateLifesText();
+        StatManager.Instance.IncreaseStat(Stat.IAGoals,1f);
         if (playerLifes <= 0)
         {
             GameManager.Instance.OnGameOver?.Invoke(playerScore,"PongSurvive");
@@ -82,6 +83,7 @@ public class PongManager : GameManager
         playerScore += 10;
         aiPaddle.IncreaseDifficulty();
         UpdateScoreText();
+        StatManager.Instance.IncreaseStat(Stat.PlayerGoals,1f);
     }
     
     protected override void ResetManager()

@@ -52,6 +52,7 @@ public class PowerUp : MonoBehaviour
                 if (paddle != null)
                 {
                     powerUpEffect.Execute(paddle.gameObject);
+                    StatManager.Instance.IncreaseStat(Stat.PowerUpsCollected,1f);
                     DeactivatePowerUp();
                 }
             }

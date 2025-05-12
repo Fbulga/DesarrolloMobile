@@ -33,11 +33,9 @@ public class DeadZone : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().color = safeColor;
             timer += Time.deltaTime;
-            Debug.Log("DeadZone Deactivated");
             if (timer >= deadlyTime)
             {
                 gameObject.GetComponent<SpriteRenderer>().color = originalColor;
-                Debug.Log("Dead Zone Activated");
                 IsDeadly = true;
             }
         }

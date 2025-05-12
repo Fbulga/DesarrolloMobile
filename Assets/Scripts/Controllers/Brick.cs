@@ -1,3 +1,4 @@
+using Enum;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -24,6 +25,7 @@ public class Brick : MonoBehaviour, IBreakable
         destroyed = true;
         VibrationManager.VibrateMedium();
         ArkanoidManager.Instance.OnDestroyBrick?.Invoke(brickPoints);
+        StatManager.Instance.IncreaseStat(Stat.BricksDestroyed,1f);
         Destroy(gameObject);            
     }
 

@@ -39,7 +39,6 @@ public class PongBall : BaseBall
                         PongManager.Instance.OnPlayerScored?.Invoke();
                     }
                     ResetBall();
-                    Debug.Log("Pong: Scored");
                     return;
                 }
 

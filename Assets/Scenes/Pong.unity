@@ -395,7 +395,7 @@ MonoBehaviour:
   pointsText: {fileID: 1086964095}
   lifesText: {fileID: 1034568025}
   ballSpawn: {fileID: 1199063964}
-  playerLifes: 100
+  playerLifes: 5
   aiPaddle: {fileID: 1989956699}
 --- !u!114 &312451206
 MonoBehaviour:

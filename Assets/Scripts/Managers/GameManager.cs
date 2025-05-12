@@ -3,6 +3,8 @@ using Enum;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -18,6 +20,9 @@ public class GameManager : MonoBehaviour
     public Action OnResetGameMode;
     public Action OnMainMenu;
     public Action OnPlayAgain;
+    public Action OnUploadJsonToCloud;
+    
+    public event Action OnCloudSyncSignInCompleted;
     
     
     [SerializeField] protected int playerScore;
@@ -47,6 +52,8 @@ public class GameManager : MonoBehaviour
         OnMainMenu += HandleMainMenu;
         OnGameOver += HandleGameOver;
         OnPlayAgain += HandlePlayAgain;
+        OnUploadJsonToCloud += HandleUploadJsonToCloud;
+        OnCloudSyncSignInCompleted += HandleSingInCompleted;
     }
 
 
@@ -54,6 +61,7 @@ public class GameManager : MonoBehaviour
     {
         previousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
+        
     }
     
     private void HandleGameOver(int score, string reason)
@@ -69,14 +77,16 @@ public class GameManager : MonoBehaviour
         }
     }
     
-
     private void HandleNewGameMode(GameManager gameModeManager)
     {
         modeManager = gameModeManager;
     }
     private void HandleMainMenu()
     {
-        Destroy(modeManager.gameObject);
+        if (modeManager != null)
+        {
+            Destroy(modeManager.gameObject);
+        }
         modeManager = null;
         if (PoolManager.Instance != null)
         {
@@ -86,14 +96,27 @@ public class GameManager : MonoBehaviour
     private void HandlePlayAgain()
     { 
         HandleResetGameMode();
-        Destroy(modeManager.gameObject);
+        if (modeManager != null)
+        {
+            Destroy(modeManager.gameObject);
+        }
         HandleChangeScene(previousScene);
+        StatManager.Instance.IncreaseStat(Stat.TotalMatchCount,1f);
         if(PoolManager.Instance != null)
         {
             PoolManager.Instance.OnClearPool?.Invoke();
         }
     }
-    
+
+    private void HandleSingInCompleted()
+    {
+        OnCloudSyncSignInCompleted?.Invoke();
+    }
+
+    private void HandleUploadJsonToCloud()
+    {
+        CloudSync.Instance.OnUploadJsonRequested?.Invoke();
+    }
     protected virtual void ResetManager(){}
     protected virtual void UpdateScoreText(){}
 

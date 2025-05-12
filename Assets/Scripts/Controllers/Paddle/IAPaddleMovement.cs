@@ -81,7 +81,6 @@ public class IAPaddleMovement : MonoBehaviour
         
         if (hitRight.collider != null)
         {
-            Debug.Log("toco el limite a la derecha: " + hitRight.collider.name);
             rightMovement = 0f;
         }
         else
@@ -91,7 +90,6 @@ public class IAPaddleMovement : MonoBehaviour
         
         if (hitLeft.collider != null)
         {
-            Debug.Log("toco el limite a la izquierda: " + hitLeft.collider.name);
             leftMovement = 0f;
         }
         else

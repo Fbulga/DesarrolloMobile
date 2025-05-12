@@ -38,9 +38,9 @@ public class SFXManager : MonoBehaviour
     private void PlaySFX(SFXType clipType)
     {
         soundDB.TryGetAudioClip(clipType, out AudioClip audioClip);
-        //audioSourceSFX.clip = audioClip;
+        audioSourceSFX.clip = audioClip;
         audioSourceSFX.loop = false;
-        audioSourceSFX.PlayOneShot(audioClip);
+        audioSourceSFX.Play();
     }
     public void PlaySFXClip(SFXType clipType) => PlaySFX(clipType);
     

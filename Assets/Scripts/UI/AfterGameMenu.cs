@@ -1,3 +1,4 @@
+using Enum;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,12 +6,30 @@ using UnityEngine.SceneManagement;
 public class AfterGameMenu : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
+    
+    private bool alreadyRequestedUpload = false;
+    private void OnEnable()
+    {
+        GameManager.Instance.OnCloudSyncSignInCompleted += UploadData;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnCloudSyncSignInCompleted -= UploadData;
+    }
+    
+    
     private void Start()
     {
+        StatManager.Instance.IncreaseStat(Stat.TotalScore,GameManager.Instance.PlayerScore);
         if (scoreText != null)
         {
             scoreText.text = $"Score: {GameManager.Instance.PlayerScore}";
-        }   
+        }  
+        if (!alreadyRequestedUpload)
+        {
+            UploadData();
+        }
     }
     
     public void PlayAgain()
@@ -27,6 +46,11 @@ public class AfterGameMenu : MonoBehaviour
         GameManager.Instance.OnChangeSceneRequested?.Invoke("Menu");
     }
 
+    private void UploadData()
+    {
+        GameManager.Instance.OnUploadJsonToCloud?.Invoke();
+        alreadyRequestedUpload = true;
+    }
     
     
 }
