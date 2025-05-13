@@ -16,6 +16,7 @@ MonoBehaviour:
   prefab: {fileID: 1772295241752277830, guid: 8cb72b7a589ee7642890551458ae1ede, type: 3}
   particlesPrefab: {fileID: 2778053770526793463, guid: bd78bbae77ad1584193c3beb2b190201, type: 3}
   powerUpColor: {r: 0, g: 0.89019614, b: 1, a: 1}
+  prefabType: 6
   powerUpSpeed: 2
   scaleMultiplier: 1.6
   duration: 5

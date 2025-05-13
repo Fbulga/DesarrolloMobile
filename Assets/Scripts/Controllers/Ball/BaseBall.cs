@@ -99,12 +99,10 @@ public abstract class BaseBall : MonoBehaviour
         // Cambiar color
         spriteRenderer.color = bounceColor;
 
-        // Reproducir efecto de partículas si está asignado
-        if (ballData.ParticleBouncePrefab != null)
-        {
-            PoolManager.Instance.GetPowerUp(ballData.ParticleBouncePrefab,transform.position);
-            //Instantiate(ballData.ParticleBouncePrefab, transform.position, Quaternion.identity);
-        }
+        GameObject ballParticles = PoolManager.Instance.GetPowerUp(PrefabsType.BallParticles,transform.position);
+        Particles particles = ballParticles.GetComponent<Particles>();
+        particles.prefabType = PrefabsType.BallParticles;
+        
 
         float mitadDuracion = animationLenght / 2f;
 

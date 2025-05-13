@@ -4902,3 +4902,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 11400000, guid: 67c04a0ef46901e4e8afedbd7da549e7, type: 2}
+  prefabType: 4
+  color: {r: 0, g: 0, b: 0, a: 0}

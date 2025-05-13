@@ -1,4 +1,5 @@
 using System;
+using Enum;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -34,6 +35,6 @@ public class ArkanoidBall : BaseBall
     private void DisableBall()
     {
         VibrationManager.VibrateMedium();
-        PoolManager.Instance.ReturnBall(gameObject,ArkanoidManager.Instance.ballPrefab);
+        PoolManager.Instance.ReturnBall(gameObject,PrefabsType.ArkanoidBall);
     }
 }

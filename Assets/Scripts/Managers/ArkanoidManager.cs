@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using Enum;
 
 public class ArkanoidManager : GameManager
 {
@@ -51,7 +52,7 @@ public class ArkanoidManager : GameManager
     private void Start()
     {
         UpdateScoreText();
-        PoolManager.Instance.GetBall(ballPrefab, spawnPoint.position);
+        PoolManager.Instance.GetBall(PrefabsType.ArkanoidBall, spawnPoint.position);
     }
     
     private void HandleBallInGame()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Enum;
 using UnityEngine;
 
 public class PoolManager : MonoBehaviour
@@ -8,10 +9,13 @@ public class PoolManager : MonoBehaviour
 
     public Action OnClearPool;
     
-    private Dictionary<GameObject, Queue<GameObject>> unActivePool = new Dictionary<GameObject, Queue<GameObject>>();
-    private Dictionary<GameObject, List<GameObject>> activePool = new Dictionary<GameObject, List<GameObject>>();
+    private Dictionary<PrefabsType, Queue<GameObject>> unActivePool = new Dictionary<PrefabsType, Queue<GameObject>>();
+    private Dictionary<PrefabsType, List<GameObject>> activePool = new Dictionary<PrefabsType, List<GameObject>>();
 
-    public Dictionary<GameObject, List<GameObject>> ActivePool => activePool;
+    public Dictionary<PrefabsType, List<GameObject>> ActivePool => activePool;
+    
+    
+    [SerializeField] private PrefabsDB prefabsDB;
 
     private void Awake()
     {
@@ -26,44 +30,44 @@ public class PoolManager : MonoBehaviour
         OnClearPool += HandleClearPool;
     }
     
-    private GameObject GetObject(GameObject prefab, Vector3 position)
+    private GameObject GetObject(PrefabsType prefabType, Vector3 position)
     {
-        if (!unActivePool.ContainsKey(prefab))
-            unActivePool[prefab] = new Queue<GameObject>();
+        if (!unActivePool.ContainsKey(prefabType))
+            unActivePool[prefabType] = new Queue<GameObject>();
 
-        if (!activePool.ContainsKey(prefab))
-            activePool[prefab] = new List<GameObject>();
+        if (!activePool.ContainsKey(prefabType))
+            activePool[prefabType] = new List<GameObject>();
 
         GameObject obj;
 
-        if (unActivePool[prefab].Count > 0)
+        if (unActivePool[prefabType].Count > 0)
         {
-            obj = unActivePool[prefab].Dequeue();
+            obj = unActivePool[prefabType].Dequeue();
         }
         else
         {
-            obj = Instantiate(prefab);
+            obj = Instantiate(prefabsDB.PrefabDictionary[prefabType], position, Quaternion.identity);
         }
 
         obj.transform.position = position;
         obj.transform.rotation = Quaternion.identity;
         obj.SetActive(true);
 
-        activePool[prefab].Add(obj);
+        activePool[prefabType].Add(obj);
 
         return obj;
     }
 
-    private void ReturnObject(GameObject obj, GameObject prefabKey)
+    private void ReturnObject(GameObject obj, PrefabsType prefabType)
     {
-        if (!unActivePool.ContainsKey(prefabKey))
-            unActivePool[prefabKey] = new Queue<GameObject>();
+        if (!unActivePool.ContainsKey(prefabType))
+            unActivePool[prefabType] = new Queue<GameObject>();
 
-        if (activePool.ContainsKey(prefabKey))
-            activePool[prefabKey].Remove(obj);
+        if (activePool.ContainsKey(prefabType))
+            activePool[prefabType].Remove(obj);
 
         obj.SetActive(false);
-        unActivePool[prefabKey].Enqueue(obj);
+        unActivePool[prefabType].Enqueue(obj);
     }
 
     private void HandleClearPool()
@@ -72,17 +76,17 @@ public class PoolManager : MonoBehaviour
         activePool.Clear();
     }
 
-    public GameObject GetPowerUp(GameObject prefab, Vector3 position) => GetObject(prefab, position);
-    public void ReturnPowerUp(GameObject obj, GameObject prefabKey) => ReturnObject(obj, prefabKey);
+    public GameObject GetPowerUp(PrefabsType prefabType, Vector3 position) => GetObject(prefabType, position);
+    public void ReturnPowerUp(GameObject obj, PrefabsType prefabType) => ReturnObject(obj, prefabType);
     
-    public GameObject GetBall(GameObject prefab, Vector3 position)
+    public GameObject GetBall(PrefabsType prefabType, Vector3 position)
     {
         ArkanoidManager.Instance.OnNewBall?.Invoke();
-        return GetObject(prefab, position);
+        return GetObject(prefabType, position);
     }
-    public void ReturnBall(GameObject obj, GameObject prefabKey)
+    public void ReturnBall(GameObject obj, PrefabsType prefabType)
     {
-        ReturnObject(obj, prefabKey);
+        ReturnObject(obj, prefabType);
         ArkanoidManager.Instance.OnRemoveBall?.Invoke();
     }
 }

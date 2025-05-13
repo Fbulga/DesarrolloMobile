@@ -63,7 +63,7 @@ public class PowerUp : MonoBehaviour
     {
         Particles(powerUpEffect.PowerUpColor);
         SFXManager.Instance.PlaySFXClip(SFXType.PickPowerUp);
-        PoolManager.Instance.ReturnPowerUp(this.gameObject,powerUpEffect.Prefab);
+        PoolManager.Instance.ReturnPowerUp(this.gameObject,powerUpEffect.PrefabType);
     }
 
     IEnumerator DeactivatePowerUpAfterLifeSpan()
@@ -74,11 +74,15 @@ public class PowerUp : MonoBehaviour
     
     private void Particles(Color color)
     {
-        //TODO: Le cambio del color al prefab del SO, crear un particle segun color y enum
-        var ps = powerUpEffect.ParticlesPrefab.GetComponent<ParticleSystem>();
-        var main = ps.main;
-        main.startColor = color;
-        PoolManager.Instance.GetPowerUp(powerUpEffect.ParticlesPrefab, transform.position);
+        GameObject psGO = PoolManager.Instance.GetPowerUp(PrefabsType.PowerUpParticles, transform.position);
+        ParticleSystem ps = psGO.GetComponent<ParticleSystem>();
+        if (ps != null)
+        {
+            ParticleSystem.MainModule main = ps.main;
+            main.startColor = color;
+        }
+        Particles particleType = psGO.GetComponent<Particles>();
+        particleType.prefabType = PrefabsType.PowerUpParticles;
     }
     
 

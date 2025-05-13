@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enum;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Particles : MonoBehaviour
 {
-    [SerializeField] private BrickData particlePrefab;
+    public PrefabsType prefabType;
+
     private void OnDisable()
     {
-        PoolManager.Instance.ReturnPowerUp(gameObject,particlePrefab.ParticlesPrefab);
+        PoolManager.Instance.ReturnPowerUp(this.gameObject,prefabType);
     }
 }

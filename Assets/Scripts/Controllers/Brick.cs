@@ -45,7 +45,7 @@ public class Brick : MonoBehaviour, IBreakable
         if (dropChance <= data.DropChance && data.PowerUps.Length > 0f)
         {
             EffectSO effectSO = data.PowerUps[Random.Range(0, data.PowerUps.Length)];
-            GameObject obj = PoolManager.Instance.GetPowerUp(effectSO.Prefab, transform.position);
+            GameObject obj = PoolManager.Instance.GetPowerUp(effectSO.PrefabType, transform.position);
             PowerUp powerUp = obj.GetComponent<PowerUp>();
             powerUp.powerUpEffect = effectSO;
         }
@@ -58,9 +58,12 @@ public class Brick : MonoBehaviour, IBreakable
 
     private void Particles(Color color)
     {
-        var ps = data.ParticlesPrefab.GetComponent<ParticleSystem>();
-        var main = ps.main;
-        main.startColor = color;
-        PoolManager.Instance.GetPowerUp(data.ParticlesPrefab, transform.position);
+        GameObject particleGO = PoolManager.Instance.GetPowerUp(PrefabsType.BrickParticles, transform.position);
+        ParticleSystem ps = particleGO.GetComponent<ParticleSystem>();
+        ParticleSystem.MainModule psMain = ps.main;
+        psMain.startColor = color;
+        Particles particleType = particleGO.GetComponent<Particles>();
+        particleType.prefabType = PrefabsType.BrickParticles;
+
     }
 }

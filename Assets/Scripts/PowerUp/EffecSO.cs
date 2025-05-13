@@ -1,3 +1,4 @@
+using Enum;
 using UnityEngine;
 
 public abstract class EffectSO : ScriptableObject, IEffectable
@@ -19,5 +20,9 @@ public abstract class EffectSO : ScriptableObject, IEffectable
     
     [SerializeField] private Color powerUpColor;
     public Color PowerUpColor => powerUpColor;
+    
+    [SerializeField] private PrefabsType prefabType;
+    public PrefabsType PrefabType => prefabType;
+    
     public abstract void Execute(GameObject target);
 }
