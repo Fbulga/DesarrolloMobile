@@ -74,6 +74,7 @@ public class PowerUp : MonoBehaviour
     
     private void Particles(Color color)
     {
+        //TODO: Le cambio del color al prefab del SO, crear un particle segun color y enum
         var ps = powerUpEffect.ParticlesPrefab.GetComponent<ParticleSystem>();
         var main = ps.main;
         main.startColor = color;

@@ -7,6 +7,8 @@ using UnityEngine;
     {
         private bool alreadyRequestedUpload = false;
 
+        [SerializeField] private GameObject statsPanel;
+
         private void OnDisable()
         {
             GameManager.Instance.OnCloudSyncSignInCompleted -= UploadData;
@@ -44,5 +46,20 @@ using UnityEngine;
         {
            GameManager.Instance.OnUploadJsonToCloud?.Invoke();
            alreadyRequestedUpload = true;
+        }
+
+
+        public void Stats()
+        {
+            VibrationManager.VibrateMedium();
+            statsPanel.SetActive(true);
+            if(!alreadyRequestedUpload){
+                UploadData();
+            }
+        }
+
+        public void Back(){
+            VibrationManager.VibrateMedium();
+            statsPanel.SetActive(false);
         }
     }
