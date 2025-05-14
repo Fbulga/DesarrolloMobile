@@ -17,11 +17,11 @@ public abstract class BaseBall : MonoBehaviour
     
     [Header("Bounce Config")]
     private Vector3 originalScale;
-    [SerializeField] private Vector3 bounceScale = new Vector3(0.5f, 0.5f, 0.25f);
-    [SerializeField] private Color bounceColor = Color.white;
+    [SerializeField] private Vector3 bounceScale;
+    [SerializeField] private PrefabsType particlesType;
+    [SerializeField] private Color bounceColor;
     private Color originalColor;
     [SerializeField] private float animationLenght = 0.2f;
-    [SerializeField] private GameObject bounceParticles;
     private SpriteRenderer spriteRenderer;
     private bool isAnimating = false;
     [SerializeField] private SFXType bounceSFX; 
@@ -99,9 +99,9 @@ public abstract class BaseBall : MonoBehaviour
         // Cambiar color
         spriteRenderer.color = bounceColor;
 
-        GameObject ballParticles = PoolManager.Instance.GetPowerUp(PrefabsType.BallParticles,transform.position);
+        GameObject ballParticles = PoolManager.Instance.GetPowerUp(particlesType,transform.position);
         Particles particles = ballParticles.GetComponent<Particles>();
-        particles.prefabType = PrefabsType.BallParticles;
+        particles.prefabType = particlesType;
         
 
         float mitadDuracion = animationLenght / 2f;

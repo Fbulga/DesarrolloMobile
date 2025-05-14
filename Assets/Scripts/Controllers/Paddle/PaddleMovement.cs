@@ -11,11 +11,13 @@ public class PaddleMovement : MonoBehaviour
     [SerializeField] public PaddleData paddleData;
     public float rayDistance;
     
-
+    private bool leftMovementBlocked = false;
     private float leftMovement;
     public float LeftMovement => leftMovement;
+    private bool rightMovementBlocked = false;
     private float rightMovement;
     public float RightMovement => rightMovement;
+    
     private float normalizedX;
 
 
@@ -27,7 +29,7 @@ public class PaddleMovement : MonoBehaviour
     }
     private void Update()
     {
-        CollisionRays();
+        CollisionRays(out leftMovementBlocked,out rightMovementBlocked);
         Movement();
     }
 
@@ -55,7 +57,7 @@ public class PaddleMovement : MonoBehaviour
         //CollisionRays();
     }
     
-    private void CollisionRays()
+    public bool CollisionRays(out bool leftMovementBlocked, out bool rightMovementBlocked)
     {
         RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, rayDistance, paddleData.LimitLayerMask);
         RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, rayDistance, paddleData.LimitLayerMask);
@@ -65,23 +67,30 @@ public class PaddleMovement : MonoBehaviour
         {
             Debug.Log("toco el limite a la derecha: " + hitRight.collider.name);
             rightMovement = 0f;
+            rightMovementBlocked = true;
         }
         else
         {
             rightMovement = 1f;
+            rightMovementBlocked = false;
         }
         
         if (hitLeft.collider != null)
         {
             Debug.Log("toco el limite a la izquierda: " + hitLeft.collider.name);
             leftMovement = 0f;
+            leftMovementBlocked = true;
         }
         else
         {
             leftMovement = -1f;
+            leftMovementBlocked = false;
         }
         
+        return leftMovementBlocked || rightMovementBlocked;
     }
+    
+    
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

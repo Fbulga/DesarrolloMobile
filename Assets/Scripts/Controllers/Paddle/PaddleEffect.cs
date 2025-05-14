@@ -40,7 +40,27 @@ public class PaddleEffect : MonoBehaviour
         {
             paddle.rayDistance *= multiplier;
         }
-
+        
+        bool leftBlocked = false;
+        bool rightBlocked = false;
+        
+        
+        while (paddle.CollisionRays(out leftBlocked, out rightBlocked))
+        {
+            if (leftBlocked)
+            {
+                transform.position = new Vector3(transform.position.x + multiplier/4.2f,transform.position.y);
+            }
+            else if (rightBlocked)
+            {
+                transform.position = new Vector3(transform.position.x - multiplier/4.2f,transform.position.y);
+            }
+            else
+            {
+                break;
+            }
+        }
+        
         yield return new WaitForSeconds(duration);
         transform.localScale = originalScale;
         paddle.rayDistance = originalRayDistance;

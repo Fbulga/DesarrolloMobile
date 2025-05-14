@@ -4901,4 +4901,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb33e7f25dc42db478208428239bcc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 11400000, guid: ac50c2d4a1dce774cab7c68e7d164dbc, type: 2}
+  prefabType: 3

@@ -149,7 +149,7 @@ MonoBehaviour:
   collisionCheck: {fileID: 9212702855680048538}
   ballData: {fileID: 11400000, guid: 82939cc4b1bf3634d8fbad5de23937fe, type: 2}
   bounceScale: {x: 0.5, y: 0.5, z: 0.25}
+  particlesType: 2
   bounceColor: {r: 1, g: 1, b: 1, a: 1}
   animationLenght: 0.2
-  bounceParticles: {fileID: 4055936914117536149, guid: aa608e0462302d64cbbb7dcb06ed62b4, type: 3}
   bounceSFX: 3
