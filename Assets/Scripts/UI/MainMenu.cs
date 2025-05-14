@@ -1,9 +1,10 @@
 using System;
 using Enum;
 using UnityEngine;
+using UnityEngine.UI;
 
 
-    public class MainMenu:MonoBehaviour
+public class MainMenu:MonoBehaviour
     {
         private bool alreadyRequestedUpload = false;
 
@@ -14,6 +15,17 @@ using UnityEngine;
             GameManager.Instance.OnCloudSyncSignInCompleted -= UploadData;
         }
 
+        private void Awake()
+        {
+            CanvasScaler canvasScaler = gameObject.GetComponent<CanvasScaler>();
+            if(Application.isMobilePlatform){
+                canvasScaler.scaleFactor = 1f;
+            }
+            else
+            {
+                canvasScaler.scaleFactor = 0.5f;
+            }
+        }
         private void Start()
         {
             GameManager.Instance.OnCloudSyncSignInCompleted += UploadData;

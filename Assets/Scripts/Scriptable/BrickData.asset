@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5aad5dba4907e40bbcff2c2bf1934e, type: 3}
   m_Name: BrickData
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
   powerUps:
-  - {fileID: 11400000, guid: 20db04846c3519545b4265370568945a, type: 2}
   - {fileID: 11400000, guid: 30df4f9470dc87e41a10840cc01ad219, type: 2}
-  - {fileID: 11400000, guid: 3d4df581e27797340bbdb8e12ee07037, type: 2}
+  - {fileID: 11400000, guid: 30df4f9470dc87e41a10840cc01ad219, type: 2}
+  - {fileID: 11400000, guid: 30df4f9470dc87e41a10840cc01ad219, type: 2}
   dropChance: 1
   lifeColors:
   - {r: 1, g: 1, b: 1, a: 1}
@@ -24,5 +23,4 @@ MonoBehaviour:
   - {r: 0.9450549, g: 1, b: 0, a: 1}
   - {r: 0.17768145, g: 1, b: 0, a: 1}
   - {r: 0, g: 0.09174347, b: 1, a: 1}
-  particlesPrefab: {fileID: 2778053770526793463, guid: 61805bdd999619a4fb9d3caa8227ecd9, type: 3}
   brickSFX: 4

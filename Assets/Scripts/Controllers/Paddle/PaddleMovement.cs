@@ -13,30 +13,46 @@ public class PaddleMovement : MonoBehaviour
     
 
     private float leftMovement;
+    public float LeftMovement => leftMovement;
     private float rightMovement;
+    public float RightMovement => rightMovement;
+    private float normalizedX;
+
+
     void Start()
     {
-        Input.compass.enabled = true;
         leftMovement = -1f;
         rightMovement = 1f;
         rayDistance = paddleData.RayDistance;
     }
     private void Update()
     {
+        CollisionRays();
         Movement();
     }
+
+
     void Movement()
     {
-        Vector3 magneticField = Input.compass.rawVector;
-        float magnetX = magneticField.x;
-        float normalizedX = Mathf.Clamp(magnetX / 50f, leftMovement,rightMovement);
+        if(GameManager.Instance.IsMobilePlatform)
+        {
+            Vector3 magneticField = Input.compass.rawVector;
+            float magnetX = magneticField.x;
+            normalizedX = Mathf.Clamp(magnetX / 50f, leftMovement,rightMovement);
+        }
+        else
+        {
+            float inputX = Input.GetAxis("Horizontal");
+            normalizedX = Mathf.Clamp(inputX, leftMovement, rightMovement);
+        }
+
         transform.Translate(0f, -1f * normalizedX * paddleData.Speed * Time.deltaTime * paddleData.MovementSensitivity, 0f);
     }
 
 
     private void LateUpdate()
     {
-        CollisionRays();
+        //CollisionRays();
     }
     
     private void CollisionRays()

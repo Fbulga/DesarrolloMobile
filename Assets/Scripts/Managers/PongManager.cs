@@ -1,8 +1,9 @@
-using System;
 using Enum;
-using UnityEngine;
 using TMPro;
-using UnityEngine.Serialization;
+using System;
+using UnityEngine;
+using UnityEngine.UI;
+
 
 
 public class PongManager : GameManager
@@ -18,9 +19,10 @@ public class PongManager : GameManager
     [SerializeField] private float maxSpeedFactor;
     public float MaxSpeedFactor => maxSpeedFactor;
 
-    [SerializeField] TextMeshProUGUI pointsText;
-    [SerializeField] TextMeshProUGUI lifesText;
-    [SerializeField] GameObject ballSpawn;
+    [SerializeField] private TextMeshProUGUI pointsText;
+    [SerializeField] private TextMeshProUGUI lifesText;
+    [SerializeField] private GameObject ballSpawn;
+    [SerializeField] private GameObject canvas;
     public GameObject BallSpawn => ballSpawn;
 
     
@@ -52,6 +54,13 @@ public class PongManager : GameManager
     {
         UpdateLifesText();
         UpdateScoreText();
+        
+        CanvasScaler canvasScaler = canvas.GetComponent<CanvasScaler>();
+        if(GameManager.Instance.IsMobilePlatform){
+            canvasScaler.scaleFactor = 1f;
+        }else{
+            canvasScaler.scaleFactor = 0.5f;
+        }
     }
 
     private void Update()

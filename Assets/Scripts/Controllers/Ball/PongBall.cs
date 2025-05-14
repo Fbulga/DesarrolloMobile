@@ -53,7 +53,7 @@ public class PongBall : BaseBall
                 Reflect(response);
                 
                 deviateCounter++;
-                if (deviateCounter >= 5)
+                if (deviateCounter >= 3)
                 {
                     DeviateBall();
                 }

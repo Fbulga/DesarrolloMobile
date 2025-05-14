@@ -1,6 +1,6 @@
-
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System;
 using Enum;
@@ -19,7 +19,7 @@ public class ArkanoidManager : GameManager
     private int bricksInGame = 0;
     private int ballsInGame = 0;
     
-    
+    [SerializeField] private GameObject canvas;
     [SerializeField] public GameObject ballPrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private int activeBallsLimit;
@@ -53,6 +53,13 @@ public class ArkanoidManager : GameManager
     {
         UpdateScoreText();
         PoolManager.Instance.GetBall(PrefabsType.ArkanoidBall, spawnPoint.position);
+        
+        CanvasScaler canvasScaler = canvas.GetComponent<CanvasScaler>();
+        if(GameManager.Instance.IsMobilePlatform){
+            canvasScaler.scaleFactor = 1f;
+        }else{
+            canvasScaler.scaleFactor = 0.5f;
+        }
     }
     
     private void HandleBallInGame()

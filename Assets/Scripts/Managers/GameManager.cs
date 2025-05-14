@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
     public int PlayerScore => playerScore;
 
     [SerializeField] private GameManager modeManager;
+
+
+    private bool isMobilePlatform = false;
+    public bool IsMobilePlatform => isMobilePlatform;
     
     
     private void Awake()
@@ -46,6 +50,23 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        if (Application.isMobilePlatform)
+        {
+            Input.compass.enabled = true;
+            isMobilePlatform = true;
+            if (SystemInfo.supportsGyroscope && Input.compass.enabled)
+            {
+                Debug.Log("El dispositivo tiene un magnetómetro (brújula disponible).");
+            }
+            else
+            {
+                Debug.Log("El dispositivo NO tiene un magnetómetro.");
+            }
+        }
+        else
+        {
+            Debug.Log("NO HAY BRUJULA");
+        }
         OnChangeSceneRequested += HandleChangeScene;
         OnNewGameMode += HandleNewGameMode;
         OnResetGameMode += HandleResetGameMode;

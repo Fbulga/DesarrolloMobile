@@ -1,6 +1,7 @@
 using Enum;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class AfterGameMenu : MonoBehaviour
@@ -29,6 +30,13 @@ public class AfterGameMenu : MonoBehaviour
         if (!alreadyRequestedUpload)
         {
             UploadData();
+        }
+        
+        CanvasScaler canvasScaler = gameObject.GetComponent<CanvasScaler>();
+        if(GameManager.Instance.IsMobilePlatform){
+            canvasScaler.scaleFactor = 1f;
+        }else{
+            canvasScaler.scaleFactor = 0.5f;
         }
     }
     
