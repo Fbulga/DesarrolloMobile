@@ -67,7 +67,8 @@ public class PaddleMovement : MonoBehaviour
         }
 
         //transform.Translate(0f, -1f * normalizedX * paddleData.Speed * Time.deltaTime * paddleData.MovementSensitivity, 0f);
-        transform.Translate(0f,-1f * normalizedX * paddleData.Speed * Time.deltaTime * paddleData.MovementSensitivity, 0f);
+        transform.Translate(normalizedX * paddleData.Speed * Time.deltaTime * paddleData.MovementSensitivity, 0f, 0f); //por si vuelves a girar el paddle a 90!!
+
         
 
     }

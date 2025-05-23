@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BallData
   m_EditorClassIdentifier: 
   speed: 2.5
-  collisionRadius: 0.1
+  collisionRadius: 0.125
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 704
