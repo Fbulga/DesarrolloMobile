@@ -5,59 +5,45 @@ using Random = UnityEngine.Random;
 public class PongBall : BaseBall
 {
     private int deviateCounter = 0;
-    private float currentSpeed;
     private float maxSpeedFactor;
     private float speedIncreaseRatio;
 
     protected override void Start()
     {
         base.Start();
-        currentSpeed = ballData.Speed;
         speedIncreaseRatio = PongManager.Instance.SpeedIncreaseRatio;
         maxSpeedFactor = PongManager.Instance.MaxSpeedFactor;
     }
-
-
-
-    protected override void CheckCollisions()
+    
+    protected override void HandleCollision(RaycastHit2D hit)
     {
-        foreach (var collider in colliders)
+        Collider2D collider = hit.collider;
+
+        if (collider.TryGetComponent<ScoreZone>(out ScoreZone scoreZone))
         {
-            if (collider == null) return;
-            
-            var response = collisionCheck.SphereRectangleCollisionStruct(collider, circleCollider2D);
-            if (response.isTouching)
+            if (scoreZone.IsPlayer)
+                PongManager.Instance.OnIAScored?.Invoke();
+            else
+                PongManager.Instance.OnPlayerScored?.Invoke();
+
+            ResetBall();
+            return;
+        }
+
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            if (currentSpeed < ballData.Speed * maxSpeedFactor)
             {
-                if (collider.TryGetComponent<ScoreZone>(out ScoreZone scoreZone))
-                {
-                    if (scoreZone.IsPlayer)
-                    {
-                        PongManager.Instance.OnIAScored?.Invoke();
-                    }
-                    else
-                    {
-                        PongManager.Instance.OnPlayerScored?.Invoke();
-                    }
-                    ResetBall();
-                    return;
-                }
-
-                if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
-                {
-                    if (currentSpeed < ballData.Speed * maxSpeedFactor)
-                    {
-                        currentSpeed *= 1f + (speedIncreaseRatio / 100f);
-                    }
-                }
-
-                Reflect(response);
-                
-                deviateCounter++;
-                if (deviateCounter >= 3)
-                {
-                    DeviateBall();
-                }
+                currentSpeed *= 1f + (speedIncreaseRatio / 100f);
             }
+        }
+
+        base.HandleCollision(hit);
+
+        deviateCounter++;
+        if (deviateCounter >= 3)
+        {
+            DeviateBall();
         }
     }
     
@@ -69,8 +55,6 @@ public class PongBall : BaseBall
         SetDirection(new Vector2(Random.Range(-1f, 1f), direction.y*-1f));
     }
     
-    protected override float GetSpeed() => currentSpeed;
-
     private void DeviateBall()
     {
         deviateCounter = 0;

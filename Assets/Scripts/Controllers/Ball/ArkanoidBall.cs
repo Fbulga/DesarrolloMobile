@@ -6,34 +6,35 @@ using Random = UnityEngine.Random;
 
 public class ArkanoidBall : BaseBall
 {
-    protected override float GetSpeed() => ballData.Speed;
-
     void OnEnable()
     {
         ArkanoidManager.Instance.OnNewBall?.Invoke();
     }
     
-    protected override void CheckCollisions()
+    protected override void HandleCollision(RaycastHit2D hit)
     {
-        foreach (var collider in colliders)
+        Collider2D collider = hit.collider;
+
+        if (collider.TryGetComponent<DeadZone>(out DeadZone deadZone) && deadZone.IsDeadly)
         {
-            if (collider == null) return;
-
-            var response = collisionCheck.SphereRectangleCollisionStruct(collider, circleCollider2D);
-            if (response.isTouching)
-            {
-                if (collider.TryGetComponent<DeadZone>(out DeadZone deadZone) && deadZone.IsDeadly)
-                {
-                    DisableBall();
-                }
-
-                if (collider.TryGetComponent<IBreakable>(out IBreakable brick))
-                {
-                    brick.TryDestroyMe();
-                }
-                Reflect(response);
-            }
+            DisableBall();
+            return;
         }
+
+        if (collider.TryGetComponent<IBreakable>(out IBreakable brick))
+        {
+            brick.TryDestroyMe();
+        }
+        
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Vector2 newDir = CalculatePaddleBounce(hit.point, collider.transform);
+            SetDirection(newDir);
+            Debug.Log("Contacto paleta");
+            return;
+        }
+        
+        base.HandleCollision(hit);
     }
 
     private void DisableBall()
