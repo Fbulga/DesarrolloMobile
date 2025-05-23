@@ -66,7 +66,7 @@ public static  class VibrationManager
     public static void VibrateLight()
     {
 #if UNITY_ANDROID || UNITY_IOS
-        Handheld.Vibrate();
+        Vibrate(50, AMPLITUDE_LIGHT);
 #endif
     }
     

@@ -16,7 +16,7 @@ public class PowerUp : MonoBehaviour
     private CircleCollider2D circleCollider2D;
     private float lifeSpan = 5f;
     private SpriteRenderer spriteRenderer;
-    private void Start()
+    private void OnEnable()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = powerUpEffect.PowerUpColor;
@@ -26,10 +26,14 @@ public class PowerUp : MonoBehaviour
         StartCoroutine(DeactivatePowerUpAfterLifeSpan());
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Physics2D.OverlapCircleNonAlloc(transform.position,detectionRadius,colliders);
         CheckCollisions();
+    }
+
+    void Update()
+    {
         transform.position += (Vector3)(speed * new Vector2(0f,-1f) * Time.deltaTime);
     }
     

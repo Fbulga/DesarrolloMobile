@@ -29,6 +29,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneMusic.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scriptable/Power Up/Invincibility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stats/StatsDB.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/TestGyro.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.services.cloudsave@3.2.2/Runtime/com.unity.services.cloudsave.internal/Runtime/PlayerDataApiClient.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.7/Scripts/Editor/TMP_BaseEditorPanel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Editor/UI/CanvasScalerEditor.cs" root0="SKIP_HIGHLIGHTING" />
@@ -135,7 +136,14 @@
       <workItem from="1746981829967" duration="45659000" />
       <workItem from="1747086491940" duration="6117000" />
       <workItem from="1747100611424" duration="1454000" />
-      <workItem from="1747191065497" duration="4348000" />
+      <workItem from="1747191065497" duration="4815000" />
+      <workItem from="1747227412629" duration="20000" />
+      <workItem from="1747262691325" duration="3723000" />
+      <workItem from="1747361937040" duration="5370000" />
+      <workItem from="1747788619134" duration="5492000" />
+      <workItem from="1747836224329" duration="1064000" />
+      <workItem from="1747864796738" duration="5514000" />
+      <workItem from="1747973975383" duration="7541000" />
     </task>
     <servers />
   </component>

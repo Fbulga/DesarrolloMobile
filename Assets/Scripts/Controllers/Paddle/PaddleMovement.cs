@@ -26,21 +26,39 @@ public class PaddleMovement : MonoBehaviour
         leftMovement = -1f;
         rightMovement = 1f;
         rayDistance = paddleData.RayDistance;
+        
+        if (GameManager.Instance.IsMobilePlatform)
+        {
+            gameObject.GetComponent<GhostSprites>().enabled = false;
+            gameObject.GetComponent<TrailRenderer>().enabled = true;
+        }
+        else
+        {
+            gameObject.GetComponent<GhostSprites>().enabled = true;
+            gameObject.GetComponent<TrailRenderer>().enabled = false;
+        }
     }
-    private void Update()
+    private void FixedUpdate()
     {
         CollisionRays(out leftMovementBlocked,out rightMovementBlocked);
+    }
+
+    private void Update()
+    {
         Movement();
     }
 
 
     void Movement()
     {
-        if(GameManager.Instance.IsMobilePlatform)
+        if (GameManager.Instance.IsMobilePlatform)
         {
-            Vector3 magneticField = Input.compass.rawVector;
+            /*Vector3 magneticField = Input.compass.rawVector;
             float magnetX = magneticField.x;
-            normalizedX = Mathf.Clamp(magnetX / 50f, leftMovement,rightMovement);
+            normalizedX = Mathf.Clamp(magnetX / 50f, leftMovement,rightMovement);*/
+            float tiltX = Input.acceleration.x;
+            //normalizedX = Mathf.Lerp(normalizedX, Mathf.Clamp(tiltX, leftMovement, rightMovement), 0.1f);
+            normalizedX = Mathf.Clamp(tiltX, leftMovement, rightMovement);
         }
         else
         {
@@ -48,14 +66,12 @@ public class PaddleMovement : MonoBehaviour
             normalizedX = Mathf.Clamp(inputX, leftMovement, rightMovement);
         }
 
-        transform.Translate(0f, -1f * normalizedX * paddleData.Speed * Time.deltaTime * paddleData.MovementSensitivity, 0f);
+        //transform.Translate(0f, -1f * normalizedX * paddleData.Speed * Time.deltaTime * paddleData.MovementSensitivity, 0f);
+        transform.Translate(0f,-1f * normalizedX * paddleData.Speed * Time.deltaTime * paddleData.MovementSensitivity, 0f);
+        
+
     }
 
-
-    private void LateUpdate()
-    {
-        //CollisionRays();
-    }
     
     public bool CollisionRays(out bool leftMovementBlocked, out bool rightMovementBlocked)
     {

@@ -1,5 +1,6 @@
 using System;
 using Enum;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -8,7 +9,7 @@ public abstract class BaseBall : MonoBehaviour
 {
     [SerializeField] protected CollisionCheck collisionCheck;
     [SerializeField] protected BallData ballData;
-    protected Collider2D[] colliders = new Collider2D[5];
+    protected Collider2D[] colliders = new Collider2D[2];
     protected CircleCollider2D circleCollider2D;
 
     protected Vector2 direction;
@@ -31,6 +32,17 @@ public abstract class BaseBall : MonoBehaviour
         circleCollider2D = GetComponent<CircleCollider2D>();
         circleCollider2D.radius = ballData.CollisionRadius;
         direction = new Vector2(Random.Range(-1f, 1f), -1f);
+
+        if (Application.isMobilePlatform)
+        {
+            gameObject.GetComponent<GhostSprites>().enabled = false;
+            gameObject.GetComponent<TrailRenderer>().enabled = true;
+        }
+        else
+        {
+            gameObject.GetComponent<GhostSprites>().enabled = true;
+            gameObject.GetComponent<TrailRenderer>().enabled = false;
+        }
         
         ///animacion
         originalScale = transform.localScale;
@@ -42,10 +54,16 @@ public abstract class BaseBall : MonoBehaviour
         EjecutarRebote();
     }
 
-    protected virtual void Update()
+ 
+
+    protected virtual void FixedUpdate()
     {
         Physics2D.OverlapCircleNonAlloc(transform.position, ballData.CollisionRadius, colliders, ballData.ObstacleLayer);
         CheckCollisions();
+    }
+
+    private void Update()
+    {
         MoveBall();
     }
 
@@ -61,21 +79,22 @@ public abstract class BaseBall : MonoBehaviour
         transform.position = response.closestPoint + normal * (circleCollider2D.radius + 0.025f);
 
         if (Mathf.Abs(direction.x) < 0.01f)
+        {
             direction.x = Random.Range(-0.5f, 0.5f);
+        }
 
         if (Mathf.Abs(direction.y) < 0.01f)
+        {
             direction.y = Random.Range(-0.5f, 0.5f);
-
+        }
         
         EjecutarRebote();
-        SFXManager.Instance.PlaySFXClip(bounceSFX);
-        StatManager.Instance.IncreaseStat(Stat.TotalBallBounces,1f);
         direction = direction.normalized;
         
     }
     public void SetDirection(Vector2 dir)
     {
-        direction = dir.normalized;
+        direction = dir;
     }
 
     protected abstract float GetSpeed();
@@ -86,6 +105,9 @@ public abstract class BaseBall : MonoBehaviour
     /// </summary>
     public void EjecutarRebote()
     {
+        SFXManager.Instance.PlaySFXClip(bounceSFX);
+        StatManager.Instance.IncreaseStat(Stat.TotalBallBounces,1f);
+        VibrationManager.VibrateLight();
         if (!isAnimating && gameObject.activeInHierarchy)
         {
             StartCoroutine(AnimacionRebote());
@@ -104,12 +126,12 @@ public abstract class BaseBall : MonoBehaviour
         particles.prefabType = particlesType;
         
 
-        float mitadDuracion = animationLenght / 2f;
+        float mitadDuracion = animationLenght/2f;
 
         yield return Escalar(originalScale, originalScale/2f, mitadDuracion);
         
         // Escalar hacia escalaRebote
-        yield return Escalar(originalScale/2f, bounceScale, mitadDuracion);
+        yield return Escalar(originalScale/2f, bounceScale, animationLenght);
 
         // Volver a la escala original
         yield return Escalar(bounceScale, originalScale, mitadDuracion);

@@ -24,7 +24,7 @@ public class PongBall : BaseBall
         foreach (var collider in colliders)
         {
             if (collider == null) return;
-
+            
             var response = collisionCheck.SphereRectangleCollisionStruct(collider, circleCollider2D);
             if (response.isTouching)
             {

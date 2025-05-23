@@ -10,5 +10,8 @@ namespace Enum
         MultiBall,
         LongPaddle,
         Invincibility,
+        GhostPaddleSprite,
+        GhostArkanoidBallSprite,
+        GhostPongBallSprite,
     }
 }

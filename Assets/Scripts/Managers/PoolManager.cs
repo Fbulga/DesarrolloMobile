@@ -43,10 +43,12 @@ public class PoolManager : MonoBehaviour
         if (unActivePool[prefabType].Count > 0)
         {
             obj = unActivePool[prefabType].Dequeue();
+            Debug.Log("Se reutilizo");
         }
         else
         {
             obj = Instantiate(prefabsDB.PrefabDictionary[prefabType], position, Quaternion.identity);
+            Debug.Log("Se instancio uno nuevo");
         }
 
         obj.transform.position = position;
@@ -68,6 +70,7 @@ public class PoolManager : MonoBehaviour
 
         obj.SetActive(false);
         unActivePool[prefabType].Enqueue(obj);
+        Debug.Log("Volvio");
     }
 
     private void HandleClearPool()
@@ -79,14 +82,8 @@ public class PoolManager : MonoBehaviour
     public GameObject GetPowerUp(PrefabsType prefabType, Vector3 position) => GetObject(prefabType, position);
     public void ReturnPowerUp(GameObject obj, PrefabsType prefabType) => ReturnObject(obj, prefabType);
     
-    public GameObject GetBall(PrefabsType prefabType, Vector3 position)
-    {
-        ArkanoidManager.Instance.OnNewBall?.Invoke();
-        return GetObject(prefabType, position);
-    }
-    public void ReturnBall(GameObject obj, PrefabsType prefabType)
-    {
-        ReturnObject(obj, prefabType);
-        ArkanoidManager.Instance.OnRemoveBall?.Invoke();
-    }
+    public GameObject GetBall(PrefabsType prefabType, Vector3 position) => GetObject(prefabType, position);
+    
+    public void ReturnBall(GameObject obj, PrefabsType prefabType) => ReturnObject(obj, prefabType);
+    
 }

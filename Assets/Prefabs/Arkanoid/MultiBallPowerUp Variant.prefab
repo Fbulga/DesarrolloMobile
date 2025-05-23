@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5621511384353045812, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.2320316
+      value: -2.299
       objectReference: {fileID: 0}
     - target: {fileID: 5621511384353045812, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -92,6 +92,74 @@ PrefabInstance:
       propertyPath: powerUpEffect
       value: 
       objectReference: {fileID: 11400000, guid: 20db04846c3519545b4265370568945a, type: 2}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 12.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: ShapeModule.m_Position.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: ShapeModule.m_Position.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: ShapeModule.m_Position.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 2.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
+      value: 0.0333786
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].inSlope
+      value: -0.0333786
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope
+      value: -0.0333786
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
+      value: -0.0333786
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425521681682678938, guid: d71dfc0d430bb9b4aa9c8f4fedec1fab, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outSlope
+      value: -0.0333786
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

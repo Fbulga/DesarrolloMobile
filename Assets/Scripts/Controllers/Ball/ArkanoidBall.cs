@@ -6,9 +6,13 @@ using Random = UnityEngine.Random;
 
 public class ArkanoidBall : BaseBall
 {
-
     protected override float GetSpeed() => ballData.Speed;
 
+    void OnEnable()
+    {
+        ArkanoidManager.Instance.OnNewBall?.Invoke();
+    }
+    
     protected override void CheckCollisions()
     {
         foreach (var collider in colliders)
@@ -34,7 +38,8 @@ public class ArkanoidBall : BaseBall
 
     private void DisableBall()
     {
-        VibrationManager.VibrateMedium();
+        ArkanoidManager.Instance.OnRemoveBall?.Invoke();
+        VibrationManager.VibrateMedium(); 
         PoolManager.Instance.ReturnBall(gameObject,PrefabsType.ArkanoidBall);
     }
 }
