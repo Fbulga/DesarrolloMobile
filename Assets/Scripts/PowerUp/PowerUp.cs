@@ -52,7 +52,7 @@ public class PowerUp : MonoBehaviour
                         DeactivatePowerUp();
                 }
                 
-                collider.TryGetComponent<PaddleMovement>(out PaddleMovement paddle);
+               collider.TryGetComponent<PaddleMovement>(out PaddleMovement paddle);
                 if (paddle != null)
                 {
                     powerUpEffect.Execute(paddle.gameObject);

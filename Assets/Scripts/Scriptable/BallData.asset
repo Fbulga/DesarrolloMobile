@@ -16,5 +16,5 @@ MonoBehaviour:
   collisionRadius: 0.125
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 704
+    m_Bits: 1728
   particleBouncePrefab: {fileID: 4055936914117536149, guid: aa608e0462302d64cbbb7dcb06ed62b4, type: 3}

@@ -58,7 +58,7 @@ public class PaddleEffect : MonoBehaviour
             transform.position = new Vector3(transform.position.x-multiplier/12f,transform.position.y);
         }*/
 
-        transform.localScale = new Vector3(originalScale.x, originalScale.y  * multiplier, originalScale.z);
+        transform.localScale = new Vector3(originalScale.x * multiplier, originalScale.y, originalScale.z);
         
         if (paddle.rayDistance < originalRayDistance * multiplier)
         {

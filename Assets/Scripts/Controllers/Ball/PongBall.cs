@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,36 +23,73 @@ public class PongBall : BaseBall
         if (collider.TryGetComponent<ScoreZone>(out ScoreZone scoreZone))
         {
             if (scoreZone.IsPlayer)
+            {
                 PongManager.Instance.OnIAScored?.Invoke();
+            }
             else
+            {
                 PongManager.Instance.OnPlayerScored?.Invoke();
+            }
 
             ResetBall();
             return;
         }
 
-        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collider.gameObject.layer == LayerMask.NameToLayer("IA"))
         {
             if (currentSpeed < ballData.Speed * maxSpeedFactor)
             {
                 currentSpeed *= 1f + (speedIncreaseRatio / 100f);
             }
         }
-
-        base.HandleCollision(hit);
-
-        deviateCounter++;
-        if (deviateCounter >= 3)
+        
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            DeviateBall();
+            if (currentSpeed < ballData.Speed * maxSpeedFactor)
+            {
+                currentSpeed *= 1f + (speedIncreaseRatio / 100f);
+            }
+            Vector2 newDir = CalculatePaddleBounce(hit.point, collider.transform);
+            SetDirection(newDir);
+            deviateCounter++;
+            if (deviateCounter >= 3)
+            { 
+                DeviateBall();
+            }
+            ballVisuals.HandleBounceEffect();
+            return;
         }
+        
+        base.HandleCollision(hit);
     }
     
     private void ResetBall()
     {
+        ballVisuals.HandleBounceEffect();
+        ballVisuals.SpriteRenderer.enabled = false;
+        
+        if (GameManager.Instance.IsMobilePlatform)
+        {
+            if (ballVisuals.TrailRenderer != null && ballVisuals.TrailRenderer.enabled)
+            {
+                ballVisuals.TrailRenderer.enabled = false;
+            }
+        }
+        
         deviateCounter = 0;
         currentSpeed = ballData.Speed;
         transform.position = PongManager.Instance.BallSpawn.transform.position;
+        ballVisuals.SpriteRenderer.enabled = true;
+
+        if (GameManager.Instance.IsMobilePlatform)
+        {
+            if (ballVisuals.TrailRenderer != null && !ballVisuals.TrailRenderer.enabled)
+            {
+                ballVisuals.TrailRenderer.enabled = true;
+            }
+        }
+        
+        
         SetDirection(new Vector2(Random.Range(-1f, 1f), direction.y*-1f));
     }
     
@@ -60,6 +98,7 @@ public class PongBall : BaseBall
         deviateCounter = 0;
         SetDirection(new Vector2(direction.normalized.x * Random.Range(-1f,1f), direction.normalized.y));
     }
+
     
 }
 

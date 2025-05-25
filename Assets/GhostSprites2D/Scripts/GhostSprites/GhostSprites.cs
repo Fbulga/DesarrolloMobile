@@ -127,7 +127,7 @@ public class GhostSprites : MonoBehaviour
 		hasRigidBody2D = this.gameObject.GetComponent<Rigidbody2D>() != null ? true : false;
 		
 		ghostMaterial.Reverse();
-
+		
 		lastPosition = transform.position;
 
 	}
@@ -192,7 +192,7 @@ public class GhostSprites : MonoBehaviour
 	
 	void LateUpdate ()
 	{
-
+		
 		if (lastPosition == transform.position)
 		{
 			foreach (GameObject ghost in ghostList)
@@ -205,7 +205,7 @@ public class GhostSprites : MonoBehaviour
         {
             return;
         }
-
+        
 		if(ghostMaterial.Count == 0)
 			ghostMaterial.Add (gameObject.GetComponent<SpriteRenderer>().material);
 		
@@ -251,10 +251,7 @@ public class GhostSprites : MonoBehaviour
 			sprite.color = color;
 			int subMat = (int)Mathf.Floor(i / materialDivisor);
 			sprite.material = subMat <= 0 ? ghostMaterial[0] : ghostMaterial[subMat];
-			ghostList[i].transform.position = new Vector3(ghostList[i].transform.position.x,
-			                                              ghostList[i].transform.position.y,
-			                                              i * 0.0001f);
-			
+			ghostList[i].transform.position = new Vector3(ghostList[i].transform.position.x,ghostList[i].transform.position.y,i * 0.0001f);
 		}
 		spacingCounter = 0;
 		lastPosition = transform.position;

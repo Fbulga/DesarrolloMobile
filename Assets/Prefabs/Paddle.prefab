@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5313984744809042107}
   - component: {fileID: 4985533727670356311}
+  - component: {fileID: 1378169197291554456}
   - component: {fileID: 632787481852008282}
   m_Layer: 9
   m_Name: Paddle
@@ -49,6 +50,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paddleData: {fileID: 11400000, guid: 36322b19fa0caf44187d2665012b83f8, type: 2}
   rayDistance: 0
+--- !u!114 &1378169197291554456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4623592075852294423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e47eecb573085f49919d7a2ad4c7cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &632787481852008282
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -104,11 +117,11 @@ GameObject:
   m_Component:
   - component: {fileID: 327145017433385037}
   - component: {fileID: 4212597307800980295}
-  - component: {fileID: 2527248105951668731}
   - component: {fileID: 8650504011632077831}
   - component: {fileID: 4825845490952698290}
+  - component: {fileID: 3243302295987845624}
   m_Layer: 9
-  m_Name: visual
+  m_Name: PaddleVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,18 +194,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2527248105951668731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5174908821584976142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e47eecb573085f49919d7a2ad4c7cae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8650504011632077831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,6 +320,18 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &3243302295987845624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5174908821584976142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d52bd4b5ff53a4d92f1ba0bc319b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5894324355911705889
 GameObject:
   m_ObjectHideFlags: 0

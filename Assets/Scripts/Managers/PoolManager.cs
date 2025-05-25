@@ -43,12 +43,10 @@ public class PoolManager : MonoBehaviour
         if (unActivePool[prefabType].Count > 0)
         {
             obj = unActivePool[prefabType].Dequeue();
-            Debug.Log("Se reutilizo");
         }
         else
         {
             obj = Instantiate(prefabsDB.PrefabDictionary[prefabType], position, Quaternion.identity);
-            Debug.Log("Se instancio uno nuevo");
         }
 
         obj.transform.position = position;
@@ -70,7 +68,6 @@ public class PoolManager : MonoBehaviour
 
         obj.SetActive(false);
         unActivePool[prefabType].Enqueue(obj);
-        Debug.Log("Volvio");
     }
 
     private void HandleClearPool()

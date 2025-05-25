@@ -30,10 +30,9 @@ public class ArkanoidBall : BaseBall
         {
             Vector2 newDir = CalculatePaddleBounce(hit.point, collider.transform);
             SetDirection(newDir);
-            Debug.Log("Contacto paleta");
+            ballVisuals.HandleBounceEffect();
             return;
         }
-        
         base.HandleCollision(hit);
     }
 

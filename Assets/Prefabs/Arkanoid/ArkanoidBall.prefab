@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 9041829928047503343}
   - component: {fileID: 3200240217857465688}
   - component: {fileID: 8783538167090626717}
+  - component: {fileID: 4003272631983092343}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: BallVisuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,6 +222,24 @@ TrailRenderer:
   m_Autodestruct: 1
   m_Emitting: 1
   m_ApplyActiveColorSpace: 0
+--- !u!114 &4003272631983092343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5206222243746660079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6e0e58557e33d4aa93e05df6d4db2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 9041829928047503343}
+  particlesType: 2
+  animationLength: 0.125
+  bounceScale: {x: 0.5, y: 0.5, z: 0.5}
+  bounceSFX: 3
+  bounceColor: {r: 1, g: 0.6462745, b: 0.56, a: 1}
 --- !u!1 &6199170638837260914
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,13 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4e43937da5d4e4283a6692b37d8a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 9041829928047503343}
-  visualTransform: {fileID: 1173791524669793595}
-  ballData: {fileID: 11400000, guid: 82939cc4b1bf3634d8fbad5de23937fe, type: 2}
   minRandomX: -1
   maxRandomX: 1
-  bounceScale: {x: 0.5, y: 0.5, z: 0.25}
-  particlesType: 2
-  bounceColor: {r: 1, g: 0.19607845, b: 0, a: 1}
-  animationLenght: 0.1
-  bounceSFX: 3
+  ballData: {fileID: 11400000, guid: 82939cc4b1bf3634d8fbad5de23937fe, type: 2}
+  ballVisuals: {fileID: 4003272631983092343}

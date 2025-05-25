@@ -27,16 +27,7 @@ public class PaddleMovement : MonoBehaviour
         rightMovement = 1f;
         rayDistance = paddleData.RayDistance;
         
-        if (GameManager.Instance.IsMobilePlatform)
-        {
-            gameObject.GetComponent<GhostSprites>().enabled = false;
-            gameObject.GetComponent<TrailRenderer>().enabled = true;
-        }
-        else
-        {
-            gameObject.GetComponent<GhostSprites>().enabled = true;
-            gameObject.GetComponent<TrailRenderer>().enabled = false;
-        }
+
     }
     private void FixedUpdate()
     {
