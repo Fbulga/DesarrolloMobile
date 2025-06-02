@@ -88,26 +88,19 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void HandleChangeScene(/*string sceneName*/ SceneIndex sceneIndex)
+    private void HandleChangeScene(SceneIndex sceneIndex)
     {
         previousScene = SceneManager.GetActiveScene().buildIndex;
-        //previousScene = SceneManager.GetActiveScene().name;
-        //SceneManager.LoadScene(sceneName);
-        
-        
-        
+      
         slider.value = 0f; 
         loadingScreen.SetActive(true);
         StartCoroutine(LoadSceneAsync((int)sceneIndex));
-        
-        
-    }
+        }
     
     private void HandleGameOver(int score, SceneIndex reason)
     {
         playerScore = score;
         HandleChangeScene(reason);
-        //HandleChangeScene(index);
     }
     private void HandleResetGameMode()
     {
@@ -173,9 +166,6 @@ public class GameManager : MonoBehaviour
             float targetFill = Mathf.Clamp01(operation.progress / 0.9f);
 
             slider.value = Mathf.MoveTowards(slider.value, targetFill, fillSpeed * Time.deltaTime);;
-            
-            //loadingBarFill.fillAmount = Mathf.MoveTowards(loadingBarFill.fillAmount, targetFill, fillSpeed * Time.deltaTime);
-
             
             if (operation.progress >= 0.9f && slider.value >= 0.999f)
             {

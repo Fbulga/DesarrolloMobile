@@ -1214,7 +1214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1723926229941868007, guid: 5c50092fa419e98439b060d06ae5129b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.17761229
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1723926229941868007, guid: 5c50092fa419e98439b060d06ae5129b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1232,6 +1232,30 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 1451522228}
+    - target: {fileID: 5374120326923562244, guid: 5c50092fa419e98439b060d06ae5129b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374120326923562244, guid: 5c50092fa419e98439b060d06ae5129b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374120326923562244, guid: 5c50092fa419e98439b060d06ae5129b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374120326923562244, guid: 5c50092fa419e98439b060d06ae5129b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374120326923562244, guid: 5c50092fa419e98439b060d06ae5129b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374120326923562244, guid: 5c50092fa419e98439b060d06ae5129b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

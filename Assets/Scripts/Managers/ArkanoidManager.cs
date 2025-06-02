@@ -53,14 +53,6 @@ public class ArkanoidManager : GameManager
     private void Start()
     {
         UpdateScoreText();
-        /*  
-        CanvasScaler canvasScaler = canvas.GetComponent<CanvasScaler>();
-        if(GameManager.Instance.IsMobilePlatform){
-            canvasScaler.scaleFactor = 1f;
-        }else{
-            canvasScaler.scaleFactor = 0.5f;
-        }
-        */
         startText.SetActive(true);
     }
     
