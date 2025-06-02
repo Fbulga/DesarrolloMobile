@@ -14,6 +14,7 @@ public class PongBall : BaseBall
         base.Start();
         speedIncreaseRatio = PongManager.Instance.SpeedIncreaseRatio;
         maxSpeedFactor = PongManager.Instance.MaxSpeedFactor;
+        PongManager.Instance.AIPaddle.NewBall(this.gameObject);
     }
     
     protected override void HandleCollision(RaycastHit2D hit)

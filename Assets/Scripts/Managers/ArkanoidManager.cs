@@ -53,9 +53,7 @@ public class ArkanoidManager : GameManager
     private void Start()
     {
         UpdateScoreText();
-        /*
-        PoolManager.Instance.GetBall(PrefabsType.ArkanoidBall, spawnPoint.position);
-        
+        /*  
         CanvasScaler canvasScaler = canvas.GetComponent<CanvasScaler>();
         if(GameManager.Instance.IsMobilePlatform){
             canvasScaler.scaleFactor = 1f;
@@ -130,6 +128,6 @@ public class ArkanoidManager : GameManager
     public void StartGame()
     {
         PoolManager.Instance.GetBall(PrefabsType.ArkanoidBall, spawnPoint.position);
-        startText.SetActive(true);
+        startText.SetActive(false);
     }
 }

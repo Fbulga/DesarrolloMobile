@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public class IAPaddleMovement : MonoBehaviour
 {
     [SerializeField] private PaddleData paddleData;
-    [SerializeField] public Transform ball;
+    [SerializeField] public GameObject ball;
     
     
 
@@ -29,29 +29,31 @@ public class IAPaddleMovement : MonoBehaviour
     private void Update()
     {
         CollisionRays();
-
-        ballDirection = ball.GetComponent<BaseBall>().Direction;
-
-        if (ballDirection.y > 0f)
+        if (ball != null)
         {
-            float distanceX = ball.position.x - transform.position.x;
+            ballDirection = ball.GetComponent<BaseBall>().Direction;
 
-            if (Mathf.Abs(distanceX) > threshold)
+            if (ballDirection.y > 0f)
             {
-                float direction = Mathf.Sign(distanceX);
+                float distanceX = ball.transform.position.x - transform.position.x;
 
-                if ((direction > 0f && rightMovement > 0f) || (direction < 0f && leftMovement < 0f))
+                if (Mathf.Abs(distanceX) > threshold)
                 {
-                    if (Mathf.Sign(aimOffset) != direction)
+                    float direction = Mathf.Sign(distanceX);
+
+                    if ((direction > 0f && rightMovement > 0f) || (direction < 0f && leftMovement < 0f))
                     {
-                        aimOffset = Random.Range(-aimOffsetRange, aimOffsetRange);
+                        if (Mathf.Sign(aimOffset) != direction)
+                        {
+                            aimOffset = Random.Range(-aimOffsetRange, aimOffsetRange);
+                        }
+
+                        float moveStep = paddleData.Speed * Time.deltaTime;
+
+                        Vector3 targetPosition = new Vector3(ball.transform.position.x + aimOffset,transform.position.y,transform.position.z);
+
+                        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * aiReaction);
                     }
-
-                    float moveStep = paddleData.Speed * Time.deltaTime;
-
-                    Vector3 targetPosition = new Vector3(ball.position.x + aimOffset,transform.position.y,transform.position.z);
-                    
-                    transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * aiReaction);
                 }
             }
         }
@@ -103,5 +105,10 @@ public class IAPaddleMovement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, new Vector2(transform.position.x,transform.position.y) + Vector2.right * paddleData.RayDistance);
         Gizmos.DrawLine(transform.position, new Vector2(transform.position.x,transform.position.y) + Vector2.left * paddleData.RayDistance);
+    }
+
+    public void NewBall(GameObject newBall)
+    {
+       ball = newBall;
     }
 }

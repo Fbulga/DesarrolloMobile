@@ -21,9 +21,11 @@ public class PongManager : GameManager
 
     [SerializeField] private TextMeshProUGUI pointsText;
     [SerializeField] private TextMeshProUGUI lifesText;
-    [SerializeField] private GameObject ballSpawn;
+    [SerializeField] private Transform ballSpawn;
     [SerializeField] private GameObject canvas;
-    public GameObject BallSpawn => ballSpawn;
+    public Transform BallSpawn => ballSpawn;
+    
+    [SerializeField] private GameObject startText;
 
     
     private float timer = 0f;
@@ -31,6 +33,7 @@ public class PongManager : GameManager
     
     
     [SerializeField] private IAPaddleMovement aiPaddle;
+    public IAPaddleMovement AIPaddle => aiPaddle;
 
 
     
@@ -54,13 +57,15 @@ public class PongManager : GameManager
     {
         UpdateLifesText();
         UpdateScoreText();
-        
+        startText.SetActive(true);
+        /*
         CanvasScaler canvasScaler = canvas.GetComponent<CanvasScaler>();
         if(GameManager.Instance.IsMobilePlatform){
             canvasScaler.scaleFactor = 1f;
         }else{
             canvasScaler.scaleFactor = 0.5f;
         }
+        */
     }
 
     private void Update()
@@ -109,4 +114,9 @@ public class PongManager : GameManager
         lifesText.text = $"Lifes left: {playerLifes}";
     }
     
+    public void StartGame()
+    {
+        PoolManager.Instance.GetBall(PrefabsType.PongBall, ballSpawn.position);
+        startText.SetActive(false);
+    }
 }
