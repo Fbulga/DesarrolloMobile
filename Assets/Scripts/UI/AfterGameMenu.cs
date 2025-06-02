@@ -51,7 +51,8 @@ public class AfterGameMenu : MonoBehaviour
         Debug.Log("MenuPressed");
         VibrationManager.VibrateMedium();
         GameManager.Instance.OnMainMenu?.Invoke();
-        GameManager.Instance.OnChangeSceneRequested?.Invoke("Menu");
+        //GameManager.Instance.OnChangeSceneRequested?.Invoke("Menu");
+        GameManager.Instance.OnChangeSceneRequested?.Invoke(SceneIndex.MainMenu);
     }
 
     private void UploadData()

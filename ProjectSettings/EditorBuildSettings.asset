@@ -9,20 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: a7361ef6152bdd745bf3cb5802cde3e2
   - enabled: 1
+    path: Assets/Scenes/Pong.unity
+    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+  - enabled: 1
     path: Assets/Scenes/Arkanoid.unity
     guid: 91044bcb3af56a84183735d792bfb92b
   - enabled: 1
-    path: Assets/Scenes/Pong.unity
-    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+    path: Assets/Scenes/PongSurvive.unity
+    guid: e5e36cb1a9801ac449441661cee3c563
   - enabled: 1
     path: Assets/Scenes/Win.unity
     guid: c9daa7e1b14325d45ae419260e1a6a40
   - enabled: 1
     path: Assets/Scenes/Loss.unity
     guid: 0d0b3062e20fc1649b79be5ac0b04e75
-  - enabled: 1
-    path: Assets/Scenes/PongSurvive.unity
-    guid: e5e36cb1a9801ac449441661cee3c563
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: e0f759dd77be83a4b996f96467ef80ea, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6e1449d693ec78c45a4380885fd0f0a8, type: 2}

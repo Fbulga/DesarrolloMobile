@@ -1,7 +1,10 @@
 using System;
+using System.Collections;
 using Enum;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 
 
 
@@ -9,14 +12,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     
-    private string previousScene;
+    private int previousScene;
     private string currentScene;
     
 
     //Eventos
-    public Action<string> OnChangeSceneRequested;
+    public Action<SceneIndex> OnChangeSceneRequested;
     public Action<GameManager> OnNewGameMode;
-    public Action<int, string> OnGameOver;
+    public Action<int, SceneIndex> OnGameOver;
     public Action OnResetGameMode;
     public Action OnMainMenu;
     public Action OnPlayAgain;
@@ -34,6 +37,13 @@ public class GameManager : MonoBehaviour
     private bool isMobilePlatform = false;
     public bool IsMobilePlatform => isMobilePlatform;
     
+    
+    
+    
+    //Loading Scene
+    public GameObject loadingScreen;
+    public Slider slider;
+    [SerializeField] private float fillSpeed; 
     
     private void Awake()
     {
@@ -78,17 +88,26 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void HandleChangeScene(string sceneName)
+    private void HandleChangeScene(/*string sceneName*/ SceneIndex sceneIndex)
     {
-        previousScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(sceneName);
+        previousScene = SceneManager.GetActiveScene().buildIndex;
+        //previousScene = SceneManager.GetActiveScene().name;
+        //SceneManager.LoadScene(sceneName);
+        
+        
+        
+        slider.value = 0f; 
+        loadingScreen.SetActive(true);
+        StartCoroutine(LoadSceneAsync((int)sceneIndex));
+        
         
     }
     
-    private void HandleGameOver(int score, string reason)
+    private void HandleGameOver(int score, SceneIndex reason)
     {
         playerScore = score;
         HandleChangeScene(reason);
+        //HandleChangeScene(index);
     }
     private void HandleResetGameMode()
     {
@@ -121,7 +140,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(modeManager.gameObject);
         }
-        HandleChangeScene(previousScene);
+        HandleChangeScene((SceneIndex)previousScene);
         StatManager.Instance.IncreaseStat(Stat.TotalMatchCount,1f);
         if(PoolManager.Instance != null)
         {
@@ -142,4 +161,30 @@ public class GameManager : MonoBehaviour
     protected virtual void UpdateScoreText(){}
 
 
+    
+    private IEnumerator LoadSceneAsync(int sceneId)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
+        operation.allowSceneActivation = false; 
+
+        while (!operation.isDone)
+        {
+           
+            float targetFill = Mathf.Clamp01(operation.progress / 0.9f);
+
+            slider.value = Mathf.MoveTowards(slider.value, targetFill, fillSpeed * Time.deltaTime);;
+            
+            //loadingBarFill.fillAmount = Mathf.MoveTowards(loadingBarFill.fillAmount, targetFill, fillSpeed * Time.deltaTime);
+
+            
+            if (operation.progress >= 0.9f && slider.value >= 0.999f)
+            {
+                operation.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
+    }
+    
+    
 }

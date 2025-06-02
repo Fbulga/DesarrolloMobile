@@ -6,6 +6,6 @@ public class OutofBoundaries : DeadZone
 {
     protected override void Start()
     {
-        //xde
+        
     }
 }

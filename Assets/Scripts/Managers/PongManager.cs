@@ -35,7 +35,7 @@ public class PongManager : GameManager
     [SerializeField] private IAPaddleMovement aiPaddle;
     public IAPaddleMovement AIPaddle => aiPaddle;
 
-
+    private bool matchStart = false;
     
     
     private void Awake()
@@ -70,14 +70,18 @@ public class PongManager : GameManager
 
     private void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= 1f && playerLifes > 0)
+        if (matchStart)
         {
-            UpdateScoreText();
-            playerScore++;
-            timer -= 1f;
+            timer += Time.deltaTime;
+
+            if (timer >= 1f && playerLifes > 0)
+            {
+                UpdateScoreText();
+                playerScore++;
+                timer -= 1f;
+            }
         }
+        
     }
     
     private void HandleIAPoint()
@@ -88,7 +92,8 @@ public class PongManager : GameManager
         StatManager.Instance.IncreaseStat(Stat.IAGoals,1f);
         if (playerLifes <= 0)
         {
-            GameManager.Instance.OnGameOver?.Invoke(playerScore,"PongSurvive");
+            //GameManager.Instance.OnGameOver?.Invoke(playerScore,"PongSurvive");
+            GameManager.Instance.OnGameOver?.Invoke(playerScore,SceneIndex.PongWin);
         }
     }
 
@@ -118,5 +123,6 @@ public class PongManager : GameManager
     {
         PoolManager.Instance.GetBall(PrefabsType.PongBall, ballSpawn.position);
         startText.SetActive(false);
+        matchStart = true;
     }
 }

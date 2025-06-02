@@ -38,14 +38,16 @@ public class MainMenu:MonoBehaviour
         public void PlayArkanoid()
         {
             VibrationManager.VibrateMedium();
-            GameManager.Instance.OnChangeSceneRequested?.Invoke("Arkanoid");
+            //GameManager.Instance.OnChangeSceneRequested?.Invoke("Arkanoid");
+            GameManager.Instance.OnChangeSceneRequested?.Invoke(SceneIndex.Arkanoid);
             StatManager.Instance.IncreaseStat(Stat.TotalMatchCount,1f);
         }
 
         public void PlayPong()
         {
             VibrationManager.VibrateMedium();
-            GameManager.Instance.OnChangeSceneRequested?.Invoke("Pong");
+            //GameManager.Instance.OnChangeSceneRequested?.Invoke("Pong");
+            GameManager.Instance.OnChangeSceneRequested?.Invoke(SceneIndex.Pong);
             StatManager.Instance.IncreaseStat(Stat.TotalMatchCount, 1f);
         }
         public void Quit()

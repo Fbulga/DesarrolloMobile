@@ -21,6 +21,11 @@ public class PongBall : BaseBall
     {
         Collider2D collider = hit.collider;
 
+        if (collider.TryGetComponent<OutofBoundaries>(out OutofBoundaries outOfBoundaries))
+        {
+            ResetBall();
+            return;
+        }
         if (collider.TryGetComponent<ScoreZone>(out ScoreZone scoreZone))
         {
             if (scoreZone.IsPlayer)

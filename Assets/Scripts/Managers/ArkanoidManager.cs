@@ -76,7 +76,8 @@ public class ArkanoidManager : GameManager
         {
             Debug.Log("Game Over");
             
-            GameManager.Instance.OnGameOver?.Invoke(playerScore,"Loss");
+            //GameManager.Instance.OnGameOver?.Invoke(playerScore,"Loss");
+            GameManager.Instance.OnGameOver?.Invoke(playerScore,SceneIndex.Loss);
         }
     }
     
@@ -88,7 +89,11 @@ public class ArkanoidManager : GameManager
         if (bricksInGame == 0)
         {
             Debug.Log("Win");
-            GameManager.Instance.OnGameOver?.Invoke(playerScore,"Win");
+            //GameManager.Instance.OnGameOver?.Invoke(playerScore,"Win");
+            
+            GameManager.Instance.OnGameOver?.Invoke(playerScore,SceneIndex.ArkanoidWin);
+            
+            
         }
     }
     private void HandleNewBrick()

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Enum;
 using UnityEngine;
 using TMPro;
 
@@ -40,7 +41,8 @@ public class Pause : MonoBehaviour
         Debug.Log("MenuPressed");
         Time.timeScale = 1;
         GameManager.Instance.OnMainMenu?.Invoke();
-        GameManager.Instance.OnChangeSceneRequested?.Invoke("Menu");
+        //GameManager.Instance.OnChangeSceneRequested?.Invoke("Menu");
+        GameManager.Instance.OnChangeSceneRequested?.Invoke(SceneIndex.MainMenu);
     }
     
     private void UploadData()
