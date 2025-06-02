@@ -16,6 +16,7 @@ public class ArkanoidManager : GameManager
     
     
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject startText;
     private int bricksInGame = 0;
     private int ballsInGame = 0;
     
@@ -52,6 +53,7 @@ public class ArkanoidManager : GameManager
     private void Start()
     {
         UpdateScoreText();
+        /*
         PoolManager.Instance.GetBall(PrefabsType.ArkanoidBall, spawnPoint.position);
         
         CanvasScaler canvasScaler = canvas.GetComponent<CanvasScaler>();
@@ -60,6 +62,8 @@ public class ArkanoidManager : GameManager
         }else{
             canvasScaler.scaleFactor = 0.5f;
         }
+        */
+        startText.SetActive(true);
     }
     
     private void HandleBallInGame()
@@ -122,5 +126,10 @@ public class ArkanoidManager : GameManager
             scoreText = GameObject.Find("PointsText").GetComponent<TextMeshProUGUI>();
         }
     }
-    
+
+    public void StartGame()
+    {
+        PoolManager.Instance.GetBall(PrefabsType.ArkanoidBall, spawnPoint.position);
+        startText.SetActive(true);
+    }
 }

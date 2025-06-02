@@ -31,10 +31,11 @@ public class PaddleMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        
         CollisionRays(out leftMovementBlocked,out rightMovementBlocked);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         Movement();
     }

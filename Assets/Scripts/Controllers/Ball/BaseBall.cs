@@ -34,7 +34,7 @@ public abstract class BaseBall : MonoBehaviour
         Initialize();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         MoveBall();
     }

@@ -28,11 +28,12 @@ public class PowerUp : MonoBehaviour
 
     void FixedUpdate()
     {
+       
         Physics2D.OverlapCircleNonAlloc(transform.position,detectionRadius,colliders);
         CheckCollisions();
     }
 
-    void Update()
+    void LateUpdate()
     {
         transform.position += (Vector3)(speed * new Vector2(0f,-1f) * Time.deltaTime);
     }
@@ -60,6 +61,7 @@ public class PowerUp : MonoBehaviour
                     DeactivatePowerUp();
                 }
             }
+            
         }
     }
 
