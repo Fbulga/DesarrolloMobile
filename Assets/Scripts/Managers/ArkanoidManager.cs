@@ -13,6 +13,10 @@ public class ArkanoidManager : GameManager
     public Action OnRemoveBall;
     public Action OnNewBrick;
     public Action<int> OnDestroyBrick;
+    public Action<int> OnHitBrick;
+    
+    
+    public Action<int> OnPickUpPowerUp;
     
     
     [SerializeField] private TextMeshProUGUI scoreText;
@@ -45,8 +49,10 @@ public class ArkanoidManager : GameManager
         OnNewBall += HandleBallInGame;
         OnRemoveBall += HandleRemoveBallInGame;
         OnNewBrick += HandleNewBrick;
+        OnHitBrick += HandleHitBrick;
         OnDestroyBrick += HandleDestroyBrick;
-        
+        OnPickUpPowerUp += HandlePickUpPowerUp;
+
     }
 
 
@@ -67,12 +73,19 @@ public class ArkanoidManager : GameManager
         if (ballsInGame <= 0)
         {
             Debug.Log("Game Over");
-            
-            //GameManager.Instance.OnGameOver?.Invoke(playerScore,"Loss");
             GameManager.Instance.OnGameOver?.Invoke(playerScore,SceneIndex.Loss);
         }
     }
-    
+    private void HandleNewBrick()
+    {
+        bricksInGame++;
+    }
+
+    private void HandleHitBrick(int points)
+    {
+        playerScore += points;
+        UpdateScoreText();
+    }
     private void HandleDestroyBrick(int points)
     {
         bricksInGame--;
@@ -81,16 +94,14 @@ public class ArkanoidManager : GameManager
         if (bricksInGame == 0)
         {
             Debug.Log("Win");
-            //GameManager.Instance.OnGameOver?.Invoke(playerScore,"Win");
-            
             GameManager.Instance.OnGameOver?.Invoke(playerScore,SceneIndex.ArkanoidWin);
-            
-            
         }
     }
-    private void HandleNewBrick()
+    
+    private void HandlePickUpPowerUp(int points)
     {
-        bricksInGame++;
+        playerScore += points;
+        UpdateScoreText();
     }
 
     

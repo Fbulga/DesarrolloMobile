@@ -57,6 +57,7 @@ public class PowerUp : MonoBehaviour
                 if (paddle != null)
                 {
                     powerUpEffect.Execute(paddle.gameObject);
+                    ArkanoidManager.Instance.OnPickUpPowerUp?.Invoke(50);
                     StatManager.Instance.IncreaseStat(Stat.PowerUpsCollected,1f);
                     DeactivatePowerUp();
                 }

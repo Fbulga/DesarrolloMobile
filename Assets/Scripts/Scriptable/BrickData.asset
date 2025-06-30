@@ -16,7 +16,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3d4df581e27797340bbdb8e12ee07037, type: 2}
   - {fileID: 11400000, guid: 30df4f9470dc87e41a10840cc01ad219, type: 2}
   - {fileID: 11400000, guid: 20db04846c3519545b4265370568945a, type: 2}
-  dropChance: 1
+  dropChance: 0.33
   lifeColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 0, b: 0.047468662, a: 1}
