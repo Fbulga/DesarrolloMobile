@@ -6,34 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2b3928e0-db55-45ca-b8eb-ed615f17b749" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DesarrolloMobile/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DesarrolloMobile/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HotReload.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HotReload/Resources.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HotReload/Resources/HotReloadSettingsObject.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HotReload/Resources/HotReloadSettingsObject.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/LoadingUI.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/LoadingUI.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PaddleBounceVisualizer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PaddleBounceVisualizer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PongBall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PongBall.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Arkanoid.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Arkanoid.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Loss.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Loss.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/StatsPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/StatsPanel.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Pong.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Pong.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PongSurvive.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PongSurvive.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Win.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Win.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/ArkanoidManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/ArkanoidManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/AfterGameMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/AfterGameMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Invencibility.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Invencibility.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/LongPaddle 1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/LongPaddle 1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Multiball 1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Multiball 1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/NeonBrick.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/NeonBrick.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/NeonPaddle.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/NeonPaddle.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/PauseButton.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/PauseButton.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Score.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Score.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SurvivalPong.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SurvivalPong.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestGyro.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestGyro.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +160,9 @@
       <workItem from="1748041327489" duration="4788000" />
       <workItem from="1748128425322" duration="3056000" />
       <workItem from="1748874550546" duration="3925000" />
-      <workItem from="1748899759851" duration="1296000" />
+      <workItem from="1748899759851" duration="4706000" />
+      <workItem from="1749593509297" duration="122000" />
+      <workItem from="1751235616107" duration="828000" />
     </task>
     <servers />
   </component>

@@ -95,7 +95,8 @@ public class GameManager : MonoBehaviour
         slider.value = 0f; 
         loadingScreen.SetActive(true);
         StartCoroutine(LoadSceneAsync((int)sceneIndex));
-        }
+        PoolManager.Instance.OnClearPool?.Invoke();
+    }
     
     private void HandleGameOver(int score, SceneIndex reason)
     {
