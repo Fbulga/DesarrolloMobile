@@ -421,8 +421,6 @@ a:hover {
 
 .video-player {
   position: relative;
-
-  padding-bottom: 5%; /* 16:9 */
 }
 
 .video-player__frame {
